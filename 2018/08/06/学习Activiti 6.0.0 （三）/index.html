@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="东方娇子" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="流程引擎的接口和服务引擎API是与Activiti交互的最常见的方式。中心起始点是ProcessEngine，从ProcessEngine中，可以获得各种服务。ProcessEngine和服务service是线程安全的。因此，可以为整个服务器保留一个引用。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习Activiti 6.0.0 （三）">
+<meta property="og:url" content="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （三）/index.html">
+<meta property="og:site_name" content="东方娇子">
+<meta property="og:description" content="流程引擎的接口和服务引擎API是与Activiti交互的最常见的方式。中心起始点是ProcessEngine，从ProcessEngine中，可以获得各种服务。ProcessEngine和服务service是线程安全的。因此，可以为整个服务器保留一个引用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kangyonggan.com/uploads/api.services.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/idea-acti.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-01.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-02.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-03.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-04.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-05.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-06.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-07.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/acti-08.png">
+<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习Activiti 6.0.0 （三）">
+<meta name="twitter:description" content="流程引擎的接口和服务引擎API是与Activiti交互的最常见的方式。中心起始点是ProcessEngine，从ProcessEngine中，可以获得各种服务。ProcessEngine和服务service是线程安全的。因此，可以为整个服务器保留一个引用。">
+<meta name="twitter:image" content="http://kangyonggan.com/uploads/api.services.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （三）/"/>
+
+
+
+
+
+  <title>学习Activiti 6.0.0 （三） | 东方娇子</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6a4086b67794408d40551fa5c68a96d8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">东方娇子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习Activiti 6.0.0 （三）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/学习Activiti 6.0.0 （三）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/08/06/学习Activiti 6.0.0 （三）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="流程引擎的接口和服务"><a href="#流程引擎的接口和服务" class="headerlink" title="流程引擎的接口和服务"></a>流程引擎的接口和服务</h2><p>引擎API是与Activiti交互的最常见的方式。中心起始点是ProcessEngine，从ProcessEngine中，可以获得各种服务。ProcessEngine和服务service是线程安全的。因此，可以为整个服务器保留一个引用。</p>
+<p><img src="/uploads/api.services.png" alt=""></p>
+<a id="more"></a>
+<p>下面是从ProcessEngine中获取各个service的代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();</span><br><span class="line"></span><br><span class="line">RuntimeService runtimeService = processEngine.getRuntimeService();</span><br><span class="line">RepositoryService repositoryService = processEngine.getRepositoryService();</span><br><span class="line">TaskService taskService = processEngine.getTaskService();</span><br><span class="line">ManagementService managementService = processEngine.getManagementService();</span><br><span class="line">IdentityService identityService = processEngine.getIdentityService();</span><br><span class="line">HistoryService historyService = processEngine.getHistoryService();</span><br><span class="line">FormService formService = processEngine.getFormService();</span><br><span class="line">DynamicBpmnService dynamicBpmnService = processEngine.getDynamicBpmnService();</span><br></pre></td></tr></table></figure>
+<p>每个服务的作用暂不解释。我的一贯作风是先上手玩一下，再去思考它的作用。</p>
+<p>使用工作流的步骤大致分为：</p>
+<ul>
+<li>画一个流程图，并打包成zip文件。一般是使用eclipse插件或者idea插件。</li>
+<li>部署流程图（zip文件）。包括：部署、查询、挂起、恢复和删除。</li>
+<li>启动一个工作流实例。包括：启动、查询。</li>
+<li>执行任务。包括：执行、查询。</li>
+</ul>
+<h2 id="画流程图"><a href="#画流程图" class="headerlink" title="画流程图"></a>画流程图</h2><p>工欲善其事必先利其器，先在idea中安装画流程图的插件，如下图：</p>
+<p><img src="/uploads/idea-acti.png" alt=""></p>
+<p>安装后重启idea即可，如果电脑不能联网，也可以离线安装，插件下载地址：<a href="http://plugins.jetbrains.com/plugin/download?rel=true&amp;updateId=17789" target="_blank" rel="noopener">http://plugins.jetbrains.com/plugin/download?rel=true&amp;updateId=17789</a></p>
+<p>下面我画一个最经典的请假流程图，我先描述一下这个流程：</p>
+<ol>
+<li>员工填写请假信息。</li>
+<li>部门经理审批。</li>
+<li>如果部门经理通过，流程结束。</li>
+<li>如果部门经理不通过，回到步骤1。</li>
+</ol>
+<p>下面是使用idea画的流程图:</p>
+<p><img src="/uploads/acti-01.png" alt=""></p>
+<p><img src="/uploads/acti-02.png" alt=""></p>
+<p><img src="/uploads/acti-03.png" alt=""></p>
+<p><img src="/uploads/acti-04.png" alt=""></p>
+<p><img src="/uploads/acti-05.png" alt=""></p>
+<p>从创建好的<code>leave.bpmn</code>复制出一个<code>leave.xml</code>, 其实就是改个后缀名。然后从<code>leave.xml</code>生成一个<code>leave.png</code>， 操作如下：</p>
+<p><img src="/uploads/acti-06.png" alt=""><br><img src="/uploads/acti-07.png" alt=""></p>
+<p>最终生成的流程图如下：</p>
+<p><img src="/uploads/acti-08.png" alt=""></p>
+<p>如果图片中文乱码，请修改idea的配置文件<code>idea64.exe.vmoptions</code>(win x64)，在最后添加<code>-Dfile.encoding=UTF-8</code></p>
+<h2 id="部署流程图"><a href="#部署流程图" class="headerlink" title="部署流程图"></a>部署流程图</h2><p>把<code>leave.bpmn</code>和<code>leave.png</code>打包成<code>leave.zip</code>。然后使用下面的代码进行部署。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.acti;</span><br><span class="line"></span><br><span class="line">import org.activiti.engine.ProcessEngine;</span><br><span class="line">import org.activiti.engine.repository.Deployment;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.util.zip.ZipInputStream;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @date 4/11/18</span><br><span class="line"> */</span><br><span class="line">public class Demo04 extends AbstractServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private ProcessEngine processEngine;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 部署流程定义</span><br><span class="line">     */</span><br><span class="line">    @Test</span><br><span class="line">    public void deploy() throws Exception &#123;</span><br><span class="line">        String zipPath = &quot;D:\\code\\acti-01\\src\\main\\resources\\leave.zip&quot;;</span><br><span class="line">        Deployment deployment = processEngine.getRepositoryService().createDeployment()</span><br><span class="line">                .addZipInputStream(new ZipInputStream(new FileInputStream(zipPath))).deploy();</span><br><span class="line"></span><br><span class="line">        System.out.println(deployment.getId());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的方法是使用zip的方式部署的，当然也是可以使用bpmn+png的方式部署的。</p>
+<p>部署成功后，从表数据来看，会在<code>act_re_deployment</code>表和<code>act_re_procdef</code>表中分别插入一条数据。</p>
+<p>我个人的理解：部署一个流程定义，就像是定义一个class类，是一个抽象的概念。<br>员工去申请请假的时候，就是从部署的这个抽象的流程定义中创建一个流程实例，就好比从一个抽象的class类中创建一个Object对象。</p>
+<p>所以，一定要理解好流程定义和流程实例的概念，关于流程定义的增删改查，在ide中点一下服务的方法就能看的到。这些服务请查考图一。</p>
+<p>如果<code>leave.xml</code>中没有乱码，但是数据库中有乱码，请检查jdbc-url连接是否带有utf8参数。</p>
+<h2 id="启动流程实例"><a href="#启动流程实例" class="headerlink" title="启动流程实例"></a>启动流程实例</h2><p>代码中有注释，简单解释了一点点东东，实际操作时，还需要自己多点点服务的方法，多多实验。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.acti;</span><br><span class="line"></span><br><span class="line">import org.activiti.engine.ProcessEngine;</span><br><span class="line">import org.activiti.engine.runtime.ProcessInstance;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @date 4/11/18</span><br><span class="line"> */</span><br><span class="line">public class Demo05 extends AbstractServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private ProcessEngine processEngine;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 启动流程实例</span><br><span class="line">     */</span><br><span class="line">    @Test</span><br><span class="line">    public void start() throws Exception &#123;</span><br><span class="line">        // 流程定义ID， 指明了流程定义ID，引擎才能知道你使用的是哪个模板</span><br><span class="line">        String processDefinitionKey = &quot;LeaveProcess&quot;;</span><br><span class="line">        // 业务主键，比如请假申请, 就可以使用请假的流水号</span><br><span class="line">        String businessKey = &quot;20170411000001&quot;;</span><br><span class="line">        // 实例参数</span><br><span class="line">        Map&lt;String, Object&gt; variables = new HashMap&lt;&gt;(1);</span><br><span class="line">        // 谁请假?</span><br><span class="line">        variables.put(&quot;user&quot;, &quot;zhangsan&quot;);</span><br><span class="line"></span><br><span class="line">        ProcessInstance processInstance = processEngine.getRuntimeService().</span><br><span class="line">                startProcessInstanceByKey(processDefinitionKey, businessKey, variables);</span><br><span class="line">        System.out.println(processInstance.getId());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启动流程实例后，从表数据来看，会在<code>act_ru_execution</code>表插入两条数据、在<code>act_ru_task</code>表中插入一条数据，task表中的这条数据表示接下来需要Assignee（zhangsan）来处理这个任务，即填写请假表。</p>
+<h2 id="执行任务"><a href="#执行任务" class="headerlink" title="执行任务"></a>执行任务</h2><p>张三可以查询出指派给自己的任务，然后去执行。即从<code>act_ru_task</code>表中查出<code>Assignee</code>等于zhangsan的任务，也可以根据业务主键来查询，这些查询我们不用写，引擎已经封装成服务了，方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.acti;</span><br><span class="line"></span><br><span class="line">import org.activiti.engine.ProcessEngine;</span><br><span class="line">import org.activiti.engine.task.Task;</span><br><span class="line">import org.activiti.engine.task.TaskQuery;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @date 4/11/18</span><br><span class="line"> */</span><br><span class="line">public class Demo06 extends AbstractServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private ProcessEngine processEngine;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * zhangsan查询我的待办任务，并执行任务</span><br><span class="line">     */</span><br><span class="line">    @Test</span><br><span class="line">    public void complete() throws Exception &#123;</span><br><span class="line">        // 查询任务</span><br><span class="line">        String businessKey = &quot;20170411000001&quot;;</span><br><span class="line">        TaskQuery query = processEngine.getTaskService().createTaskQuery();</span><br><span class="line">        query.processInstanceBusinessKey(businessKey);</span><br><span class="line">        Task task = query.singleResult();</span><br><span class="line"></span><br><span class="line">        // 执行任务</span><br><span class="line">        Map&lt;String, Object&gt; variables = new HashMap&lt;&gt;(1);</span><br><span class="line">        variables.put(&quot;reason&quot;, &quot;请假去阿里面试&quot;);</span><br><span class="line">        processEngine.getTaskService().complete(task.getId(), variables);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>员工填写请假申请后，从表数据来看，会把张三之前那个任务删除，即<code>act_ru_task</code>表中的一条记录。<br>他的Assignee=zhangsan, 那么这条数据也不会真的删除了，而是转义到了历史任务表<code>act_hi_taskinst</code>中。<br>同时，task表中会新增一个Assignee=manager的新任务，等待角色为manager的用户去处理。</p>
+<h2 id="审批"><a href="#审批" class="headerlink" title="审批"></a>审批</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.acti;</span><br><span class="line"></span><br><span class="line">import org.activiti.engine.ProcessEngine;</span><br><span class="line">import org.activiti.engine.task.Task;</span><br><span class="line">import org.activiti.engine.task.TaskQuery;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @date 4/11/18</span><br><span class="line"> */</span><br><span class="line">public class Demo07 extends AbstractServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private ProcessEngine processEngine;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * manager查询我的待办任务，并执行任务</span><br><span class="line">     */</span><br><span class="line">    @Test</span><br><span class="line">    public void complete() throws Exception &#123;</span><br><span class="line">        // 查询任务</span><br><span class="line">        String assignee = &quot;manager&quot;;</span><br><span class="line">        TaskQuery query = processEngine.getTaskService().createTaskQuery();</span><br><span class="line">        // 其实这里使用候选组（Candidate Groups）来查询比较好</span><br><span class="line">        query.taskAssignee(assignee);</span><br><span class="line">        List&lt;Task&gt; tasks = query.list();</span><br><span class="line"></span><br><span class="line">        // 执行任务</span><br><span class="line">        Map&lt;String, Object&gt; variables = new HashMap&lt;&gt;(2);</span><br><span class="line">        variables.put(&quot;status&quot;, &quot;complete&quot;);</span><br><span class="line">        variables.put(&quot;replyMsg&quot;, &quot;准了&quot;);</span><br><span class="line">        processEngine.getTaskService().complete(tasks.get(0).getId(), variables);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行此任务后task表中assignee=manager的那条记录就被转义到历史任务表中了，并且也不再生成新的task了，因为流程已经结束。  </p>
+<p>至此，一个完整的工作流就走完了。后面估计还要查询历史任务，查询流程进度等，下次再学习。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/ipay.png" alt="康永敢 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" rel="next" title="学习SpringCloud07-使用docker部署SpringCloud项目">
+                <i class="fa fa-chevron-left"></i> 学习SpringCloud07-使用docker部署SpringCloud项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/06/把网站从http免费升级到https/" rel="prev" title="把网站从http免费升级到https">
+                把网站从http免费升级到https <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="康永敢" />
+            
+              <p class="site-author-name" itemprop="name">康永敢</p>
+              <p class="site-description motion-element" itemprop="description">控技寂已</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kangyonggan/" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#流程引擎的接口和服务"><span class="nav-number">1.</span> <span class="nav-text">流程引擎的接口和服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画流程图"><span class="nav-number">2.</span> <span class="nav-text">画流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署流程图"><span class="nav-number">3.</span> <span class="nav-text">部署流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动流程实例"><span class="nav-number">4.</span> <span class="nav-text">启动流程实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行任务"><span class="nav-number">5.</span> <span class="nav-text">执行任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#审批"><span class="nav-number">6.</span> <span class="nav-text">审批</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康永敢</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytKHgS79';
+      var conf = '1f9727302ea074278a18f25757248784';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

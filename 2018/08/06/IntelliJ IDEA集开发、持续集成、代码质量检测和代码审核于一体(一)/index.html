@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="东方娇子" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="下载地址 IntelliJ IDEA下载地址：https://www.jetbrains.com/idea/download TeamCity下载地址：https://www.jetbrains.com/teamcity/download Upsource下载地址：https://www.jetbrains.com/upsource/download TeamCity Plugin：https:/">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)">
+<meta property="og:url" content="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/index.html">
+<meta property="og:site_name" content="东方娇子">
+<meta property="og:description" content="下载地址 IntelliJ IDEA下载地址：https://www.jetbrains.com/idea/download TeamCity下载地址：https://www.jetbrains.com/teamcity/download Upsource下载地址：https://www.jetbrains.com/upsource/download TeamCity Plugin：https:/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE20180401b89693552301f2e1d60c3a780427f167a4738378.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE201804014eb4101e00e74b27246e5ad2c387ebc2b149c35b.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040187bd260ade064bf05398f4c6a05612a27606d408.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040192a3a27d4ed5cc2c1fe4b149c8d1a57e8122a2e3.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE20180401b2cbe1b9fbf4274961a274da47d9daf9ec109958.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040164a3c5faec96dfedb57c97f0b0f7515353ec7bde.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040114db8b0e9e377d0f3d04b5641a351780877ba0e9.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040190c432c5b896215b65196e70be7329b53479978a.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE20180401945610b306ddc518538f8b34fd225bb99ca0b047.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040119397adc0f74429b8bfd0ebbe8bb2a3e636c6e43.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040142d927ce6004bb654d9e2da17b9ddc413604006f.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040169fed61178e0e18087a094c631c280880dbdf920.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE20180401ab7f2e264df5a3e87c93d11c1104da6cb39c7ef3.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE201804010377f4258ce46f3fb1ef2c6f93ea0928a70f45b8.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE2018040157a4a890be0e9580e47679a58a504c31b024f2d3.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE20180401ea6ffbce26284267db7f2cc11729e6144aab803d.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE201804016153dda66dbc3992f894a5ca779771ad5cb1f513.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/ARTICLE201804019b2233e08610bf055fa4767a0af395580886ad2a.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/tc-16.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/tc-17.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/tc-18.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/tc-19.png">
+<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)">
+<meta name="twitter:description" content="下载地址 IntelliJ IDEA下载地址：https://www.jetbrains.com/idea/download TeamCity下载地址：https://www.jetbrains.com/teamcity/download Upsource下载地址：https://www.jetbrains.com/upsource/download TeamCity Plugin：https:/">
+<meta name="twitter:image" content="http://kangyonggan.com/uploads/ARTICLE20180401b89693552301f2e1d60c3a780427f167a4738378.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/"/>
+
+
+
+
+
+  <title>IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一) | 东方娇子</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6a4086b67794408d40551fa5c68a96d8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">东方娇子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul>
+<li>IntelliJ IDEA下载地址：<a href="https://www.jetbrains.com/idea/download" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download</a></li>
+<li>TeamCity下载地址：<a href="https://www.jetbrains.com/teamcity/download" target="_blank" rel="noopener">https://www.jetbrains.com/teamcity/download</a></li>
+<li>Upsource下载地址：<a href="https://www.jetbrains.com/upsource/download" target="_blank" rel="noopener">https://www.jetbrains.com/upsource/download</a></li>
+<li>TeamCity Plugin：<a href="https://plugins.jetbrains.com/plugin/1820-teamcity-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/1820-teamcity-integration</a></li>
+<li>Upsource Pligin：<a href="https://plugins.jetbrains.com/plugin/7431-upsource-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/7431-upsource-integration</a></li>
+<li>阿里巴巴代码质量检测插件：<a href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines</a></li>
+</ul>
+<p>后面三个是idea插件，如果电脑能联网，可以在插件中搜索到直接安装，如果是公司内网，可以下载离线安装包，然后手动安装idea插件。</p>
+<p>安装IDEA插件方法：<code>Preferences &gt; Plugins &gt; Install plugin from disk...</code></p>
+<a id="more"></a>
+<h2 id="TeamCity的安装"><a href="#TeamCity的安装" class="headerlink" title="TeamCity的安装"></a>TeamCity的安装</h2><blockquote>
+<p>以下都是以我博客服务器（ubuntu 16.04.4）为例</p>
+</blockquote>
+<h3 id="解压到指定目录"><a href="#解压到指定目录" class="headerlink" title="解压到指定目录"></a>解压到指定目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf soft/TeamCity-2017.2.3.tar.gz  -C install/</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh install/TeamCity/bin/runAll.sh start</span><br></pre></td></tr></table></figure>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh install/TeamCity/bin/runAll.sh stop</span><br></pre></td></tr></table></figure>
+<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><p><a href="http://kangyonggan.com:8111">http://kangyonggan.com:8111</a></p>
+<p>TeamCity内置了一个tomcat容器，默认端口为8111，可以在<br><code>/home/hxzq/install/TeamCity/conf/server.xml</code>修改端口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8111&quot; ...</span><br></pre></td></tr></table></figure>
+<p><img src="/uploads/ARTICLE20180401b89693552301f2e1d60c3a780427f167a4738378.png" alt=""></p>
+<p>默认即可，点击<code>Proceed</code>， 接下来是选择数据库，如下图：</p>
+<p><img src="/uploads/ARTICLE201804014eb4101e00e74b27246e5ad2c387ebc2b149c35b.png" alt=""></p>
+<p>这里我选择的是mysql，选择mysql后，需要把mysql的驱动包(可以从本地maven仓库中找到)拷贝到<br><code>/home/hxzq/.BuildServer/lib/jdbc</code>目录下，然后点击<code>Refresh JDBC Drivers</code>, 如果jar包没问题，会出现下面的界面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp mysql-connector-java-5.1.34.jar /home/hxzq/.BuildServer/lib/jdbc/</span><br></pre></td></tr></table></figure>
+<p><img src="/uploads/ARTICLE2018040187bd260ade064bf05398f4c6a05612a27606d408.png" alt=""></p>
+<p>最后填写jdbc连接的相关信息后点击<code>Proceed</code>，需要先自己创建一个数据库<code>teamcity</code><br>下一步就是接受条款，不多说。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE IF EXISTS teamcity;</span><br><span class="line"></span><br><span class="line">CREATE DATABASE teamcity</span><br><span class="line">  DEFAULT CHARACTER SET utf8</span><br><span class="line">  COLLATE utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<p>然后就是让我们创建一个管理员, 如下图：</p>
+<p><img src="/uploads/ARTICLE2018040192a3a27d4ed5cc2c1fe4b149c8d1a57e8122a2e3.png" alt=""></p>
+<p>创建完成后会直接登录，并让我们补全个人信息，如下图：</p>
+<p><img src="/uploads/ARTICLE20180401b2cbe1b9fbf4274961a274da47d9daf9ec109958.png" alt=""></p>
+<p>到此，TeamCity就算安装完毕了，接下来就是配置一个项目，用于持续集成。</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p><img src="/uploads/ARTICLE2018040164a3c5faec96dfedb57c97f0b0f7515353ec7bde.png" alt=""></p>
+<p>此处我使用的是github上的项目。<br><img src="/uploads/ARTICLE2018040114db8b0e9e377d0f3d04b5641a351780877ba0e9.png" alt=""></p>
+<p><img src="/uploads/ARTICLE2018040190c432c5b896215b65196e70be7329b53479978a.png" alt=""></p>
+<p>如果是maven项目，它会自动识别出，并推荐你使用它的构建步骤，这里选不选都行，因为回头可以修改，基本上必须修改。<br><img src="/uploads/ARTICLE20180401945610b306ddc518538f8b34fd225bb99ca0b047.png" alt=""></p>
+<p>勾选后，跳转到下面的构建步骤界面，这里你可以自由配置自己的构建步骤</p>
+<p><img src="/uploads/ARTICLE2018040119397adc0f74429b8bfd0ebbe8bb2a3e636c6e43.png" alt=""></p>
+<p>比如我配置的三个构建步骤：  </p>
+<ul>
+<li>第一步：更新代码并打包</li>
+<li>第二步：把war包拷贝到服务器</li>
+<li>第三步：执行几个shell命令，停止服务+替换war包+启动服务</li>
+</ul>
+<h3 id="配置第一步"><a href="#配置第一步" class="headerlink" title="配置第一步"></a>配置第一步</h3><p>点击<code>Edit</code><br><img src="/uploads/ARTICLE2018040142d927ce6004bb654d9e2da17b9ddc413604006f.png" alt=""></p>
+<p><img src="/uploads/ARTICLE2018040169fed61178e0e18087a094c631c280880dbdf920.png" alt=""></p>
+<p>如果配置的settings.xml不管用，可以在下面上传settings.xml文件</p>
+<p><img src="/uploads/ARTICLE20180401ab7f2e264df5a3e87c93d11c1104da6cb39c7ef3.png" alt=""></p>
+<h2 id="配置第二步"><a href="#配置第二步" class="headerlink" title="配置第二步"></a>配置第二步</h2><p>点击<code>Add build setup</code></p>
+<p><img src="/uploads/ARTICLE201804010377f4258ce46f3fb1ef2c6f93ea0928a70f45b8.png" alt=""></p>
+<p><img src="/uploads/ARTICLE2018040157a4a890be0e9580e47679a58a504c31b024f2d3.png" alt=""></p>
+<p>如果不知道，第一步打出的war包在什么路径，可以先随意写几个字符，后面尝试运行时，会打印第一步的日志，从日志中可以看到war包路径。</p>
+<p>接下来就可以尝试启动了，点击右上角的<code>run</code>， 注意看日志，顺便看看第一步打的war包的路径。</p>
+<blockquote>
+<p>首次构建，时间会比较久，需要耐心等待</p>
+</blockquote>
+<p><img src="/uploads/ARTICLE20180401ea6ffbce26284267db7f2cc11729e6144aab803d.png" alt=""></p>
+<h3 id="配置第三步"><a href="#配置第三步" class="headerlink" title="配置第三步"></a>配置第三步</h3><p>点击<code>Add build setup</code></p>
+<p><img src="/uploads/ARTICLE201804016153dda66dbc3992f894a5ca779771ad5cb1f513.png" alt=""></p>
+<blockquote>
+<p>我再第一步打的war包路径为<code>/home/hxzq/install/TeamCity/buildAgent/work/23d0c25675dc1f18/blog-web/target/blog-web-1.0-SNAPSHOT.war</code>，可供参考。</p>
+</blockquote>
+<p>其中ssh命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sh /home/hxzq/install/apache-tomcat-8.5.6-blog/bin/shutdown.sh</span><br><span class="line"></span><br><span class="line">rm -rf /home/hxzq/install/apache-tomcat-8.5.6-blog/webapps/ROOT/*</span><br><span class="line"></span><br><span class="line">unzip -d /home/hxzq/install/apache-tomcat-8.5.6-blog/webapps/ROOT/ /home/hxzq/data/wars/blog-*.war </span><br><span class="line"></span><br><span class="line">ln -s /home/hxzq/data/blog/upload/ /home/hxzq/install/apache-tomcat-8.5.6-blog/webapps/ROOT/WEB-INF/</span><br><span class="line">ln -s /home/hxzq/data/blog/cover/ /home/hxzq/install/apache-tomcat-8.5.6-blog/webapps/ROOT/WEB-INF/</span><br><span class="line">ln -s /home/hxzq/data/blog/rss/ /home/hxzq/install/apache-tomcat-8.5.6-blog/webapps/ROOT/WEB-INF/</span><br><span class="line"></span><br><span class="line">sh /home/hxzq/install/apache-tomcat-8.5.6-blog/bin/startup.sh</span><br><span class="line"></span><br><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<p>配置完成后界面如下：<br><img src="/uploads/ARTICLE201804019b2233e08610bf055fa4767a0af395580886ad2a.png" alt=""></p>
+<p>到此，算是搞定了，但是它还有另外一种操作，那就是集成在IDEA中。</p>
+<h2 id="集成到IDEA"><a href="#集成到IDEA" class="headerlink" title="集成到IDEA"></a>集成到IDEA</h2><p>在idea中搜索插件<code>teamcity</code>，安装后重启。<br><img src="/uploads/tc-16.png" alt=""></p>
+<p>重启后，会发现下面3点变化，右下角的那个图标表示暂未登录到TeamView。<br><img src="/uploads/tc-17.png" alt=""></p>
+<p>点击右下角的图标登录TeamView：<br><img src="/uploads/tc-18.png" alt=""></p>
+<p>登录成功后，即可在IDEA中一键发布项目了。<br><img src="/uploads/tc-19.png" alt=""></p>
+<p>这样的话，一个IDEA就可以开发代码，运行项目，控制版本，操作数据库，一键发布，强大的不要不要的。</p>
+<p>但是！如果代码没有改变，是不能remote run的，我也没有找到怎么在没改变代码的情况下运行。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/ipay.png" alt="康永敢 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/" rel="next" title="IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)">
+                <i class="fa fa-chevron-left"></i> IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" rel="prev" title="IntelliJ IDEA自动生成setter方法丢失is">
+                IntelliJ IDEA自动生成setter方法丢失is <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="康永敢" />
+            
+              <p class="site-author-name" itemprop="name">康永敢</p>
+              <p class="site-description motion-element" itemprop="description">控技寂已</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kangyonggan/" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载地址"><span class="nav-number">1.</span> <span class="nav-text">下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TeamCity的安装"><span class="nav-number">2.</span> <span class="nav-text">TeamCity的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解压到指定目录"><span class="nav-number">2.1.</span> <span class="nav-text">解压到指定目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">2.2.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止"><span class="nav-number">2.3.</span> <span class="nav-text">停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问"><span class="nav-number">2.4.</span> <span class="nav-text">访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">3.</span> <span class="nav-text">创建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置第一步"><span class="nav-number">3.1.</span> <span class="nav-text">配置第一步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置第二步"><span class="nav-number">4.</span> <span class="nav-text">配置第二步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置第三步"><span class="nav-number">4.1.</span> <span class="nav-text">配置第三步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成到IDEA"><span class="nav-number">5.</span> <span class="nav-text">集成到IDEA</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康永敢</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytKHgS79';
+      var conf = '1f9727302ea074278a18f25757248784';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

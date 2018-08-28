@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="东方娇子" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="注册sonatype账号地址：https://issues.sonatype.org/secure/Signup!default.jspa   记住用户名和密码，后面会频繁使用。   创建一个issue地址：https://issues.sonatype.org/secure/Dashboard.jspa使用上面注册的用户名和密码登录。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在mac上发布jar包到中央仓库">
+<meta property="og:url" content="http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/index.html">
+<meta property="og:site_name" content="东方娇子">
+<meta property="og:description" content="注册sonatype账号地址：https://issues.sonatype.org/secure/Signup!default.jspa   记住用户名和密码，后面会频繁使用。   创建一个issue地址：https://issues.sonatype.org/secure/Dashboard.jspa使用上面注册的用户名和密码登录。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-01.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-02.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-03.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-06.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-07.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-08.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-04.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-05.png">
+<meta property="og:image" content="http://kangyonggan.com/uploads/sona-09.png">
+<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在mac上发布jar包到中央仓库">
+<meta name="twitter:description" content="注册sonatype账号地址：https://issues.sonatype.org/secure/Signup!default.jspa   记住用户名和密码，后面会频繁使用。   创建一个issue地址：https://issues.sonatype.org/secure/Dashboard.jspa使用上面注册的用户名和密码登录。">
+<meta name="twitter:image" content="http://kangyonggan.com/uploads/sona-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/"/>
+
+
+
+
+
+  <title>在mac上发布jar包到中央仓库 | 东方娇子</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6a4086b67794408d40551fa5c68a96d8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">东方娇子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在mac上发布jar包到中央仓库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/综合/" itemprop="url" rel="index">
+                    <span itemprop="name">综合</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/在mac上发布jar包到中央仓库/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/08/06/在mac上发布jar包到中央仓库/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="注册sonatype账号"><a href="#注册sonatype账号" class="headerlink" title="注册sonatype账号"></a>注册sonatype账号</h3><p>地址：<a href="https://issues.sonatype.org/secure/Signup!default.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Signup!default.jspa</a></p>
+<blockquote>
+<ul>
+<li>记住用户名和密码，后面会频繁使用。</li>
+</ul>
+</blockquote>
+<h3 id="创建一个issue"><a href="#创建一个issue" class="headerlink" title="创建一个issue"></a>创建一个issue</h3><p>地址：<a href="https://issues.sonatype.org/secure/Dashboard.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a><br>使用上面注册的用户名和密码登录。</p>
+<a id="more"></a>
+<p><img src="/uploads/sona-01.png" alt="sona"></p>
+<blockquote>
+<ul>
+<li>不要修改<code>Project</code>和<code>Issue Type</code>，使用默认值即可。</li>
+</ul>
+</blockquote>
+<p><img src="/uploads/sona-02.png" alt="sona"></p>
+<blockquote>
+<ul>
+<li>其他的值请参考例子。</li>
+</ul>
+</blockquote>
+<p>创建完成后，1个工作日以内工作人员会回复你的Issue，如果通过的话，内容如下，如果不通过，那你就检查后再试试吧。</p>
+<p><img src="/uploads/sona-03.png" alt="sona"></p>
+<h3 id="使用-GPG-生成密钥对"><a href="#使用-GPG-生成密钥对" class="headerlink" title="使用 GPG 生成密钥对"></a>使用 GPG 生成密钥对</h3><p>如果mac上没有gpg命令，可以使用下面的命令进行安装:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install gpg</span><br></pre></td></tr></table></figure>
+<p>如果mac上没有brew命令，需要先安装brew命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>安brew命令需要先打开Xcode并同意条款。</li>
+</ul>
+</blockquote>
+<p>安装成功gpg命令后，生成密钥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --gen-key</span><br></pre></td></tr></table></figure>
+<p>输出信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gpg (GnuPG) 2.2.1; Copyright (C) 2017 Free Software Foundation, Inc.</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">gpg: directory &apos;/Users/kyg/.gnupg&apos; created</span><br><span class="line">gpg: keybox &apos;/Users/kyg/.gnupg/pubring.kbx&apos; created</span><br><span class="line">Note: Use &quot;gpg --full-generate-key&quot; for a full featured key generation dialog.</span><br><span class="line"></span><br><span class="line">GnuPG needs to construct a user ID to identify your key.</span><br><span class="line"></span><br><span class="line">Real name:</span><br></pre></td></tr></table></figure>
+<p>提示输入名字， 如：<code>kangyonggan</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Email address:</span><br></pre></td></tr></table></figure>
+<p>又提示输入邮箱, 如：<a href="mailto:`java@kangyonggan.com">`java@kangyonggan.com</a>`</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">You selected this USER-ID:</span><br><span class="line">    &quot;kangyonggan &lt;java@kangyonggan.com&gt;&quot;</span><br><span class="line"></span><br><span class="line">Change (N)ame, (E)mail, or (O)kay/(Q)uit?</span><br></pre></td></tr></table></figure>
+<p>选择okay, 输入：<code>o</code></p>
+<p>然后弹框要求输入密码， 这个密码后面会用到，别忘记了。</p>
+<p><img src="/uploads/sona-06.png" alt="sona"></p>
+<p>之后会让你再次输入密码，到此密钥就生成成功了，输出信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">We need to generate a lot of random bytes. It is a good idea to perform</span><br><span class="line">some other action (type on the keyboard, move the mouse, utilize the</span><br><span class="line">disks) during the prime generation; this gives the random number</span><br><span class="line">generator a better chance to gain enough entropy.</span><br><span class="line">We need to generate a lot of random bytes. It is a good idea to perform</span><br><span class="line">some other action (type on the keyboard, move the mouse, utilize the</span><br><span class="line">disks) during the prime generation; this gives the random number</span><br><span class="line">generator a better chance to gain enough entropy.</span><br><span class="line">gpg: /Users/kyg/.gnupg/trustdb.gpg: trustdb created</span><br><span class="line">gpg: key C38B01CFC194AE3C marked as ultimately trusted</span><br><span class="line">gpg: directory &apos;/Users/kyg/.gnupg/openpgp-revocs.d&apos; created</span><br><span class="line">gpg: revocation certificate stored as &apos;/Users/kyg/.gnupg/openpgp-revocs.d/7A98F7517B453D562425F564C38B01CFC194AE3C.rev&apos;</span><br><span class="line">public and secret key created and signed.</span><br><span class="line"></span><br><span class="line">pub   rsa2048 2017-10-18 [SC] [expires: 2019-10-18]</span><br><span class="line">      7A98F7517B453D562425F564C38B01CFC194AE3C</span><br><span class="line">uid                      kangyonggan &lt;java@kangyonggan.com&gt;</span><br><span class="line">sub   rsa2048 2017-10-18 [E] [expires: 2019-10-18]</span><br></pre></td></tr></table></figure>
+<p>需要记住<code>7A98F7517B453D562425F564C38B01CFC194AE3C</code>，会面会有用，记不住也没关系，可以使用下面的命令查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --list-keys</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gpg: checking the trustdb</span><br><span class="line">gpg: marginals needed: 3  completes needed: 1  trust model: pgp</span><br><span class="line">gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u</span><br><span class="line">gpg: next trustdb check due at 2019-10-18</span><br><span class="line">/Users/kyg/.gnupg/pubring.kbx</span><br><span class="line">-----------------------------</span><br><span class="line">pub   rsa2048 2017-10-18 [SC] [expires: 2019-10-18]</span><br><span class="line">      7A98F7517B453D562425F564C38B01CFC194AE3C</span><br><span class="line">uid           [ultimate] kangyonggan &lt;java@kangyonggan.com&gt;</span><br><span class="line">sub   rsa2048 2017-10-18 [E] [expires: 2019-10-18]</span><br></pre></td></tr></table></figure>
+<h3 id="将公钥发布到-PGP-密钥服务器"><a href="#将公钥发布到-PGP-密钥服务器" class="headerlink" title="将公钥发布到 PGP 密钥服务器"></a>将公钥发布到 PGP 密钥服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver hkp://keyserver.ubuntu.com:11371 --send-keys 7A98F7517B453D562425F564C38B01CFC194AE3C</span><br></pre></td></tr></table></figure>
+<p>输出信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gpg: sending key C38B01CFC194AE3C to hkp://keyserver.ubuntu.com:11371</span><br><span class="line">You have new mail in /var/mail/kyg</span><br></pre></td></tr></table></figure>
+<p>说明密钥已经发布成功了，也可以使用命令查看有没有发布成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver hkp://keyserver.ubuntu.com:11371 --recv-keys 7A98F7517B453D562425F564C38B01CFC194AE3C</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gpg: key C38B01CFC194AE3C: &quot;kangyonggan &lt;java@kangyonggan.com&gt;&quot; not changed</span><br><span class="line">gpg: Total number processed: 1</span><br><span class="line">gpg:              unchanged: 1</span><br></pre></td></tr></table></figure>
+<h3 id="配置setting-xml"><a href="#配置setting-xml" class="headerlink" title="配置setting.xml"></a>配置setting.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;servers&gt;</span><br><span class="line">    &lt;server&gt;</span><br><span class="line">        &lt;id&gt;oss&lt;/id&gt;</span><br><span class="line">        &lt;username&gt;sonatype用户名&lt;/username&gt;</span><br><span class="line">        &lt;password&gt;sonatype密码&lt;/password&gt;</span><br><span class="line">    &lt;/server&gt;</span><br><span class="line">&lt;/servers&gt;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;profiles&gt;</span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">        &lt;id&gt;ossrh&lt;/id&gt;</span><br><span class="line">        &lt;activation&gt;</span><br><span class="line">            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">        &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">        &lt;properties&gt;</span><br><span class="line">            &lt;gpg.executable&gt;gpg&lt;/gpg.executable&gt;</span><br><span class="line">            &lt;gpg.passphrase&gt;密钥的密码&lt;/gpg.passphrase&gt;</span><br><span class="line">        &lt;/properties&gt;</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">&lt;/profiles&gt;</span><br></pre></td></tr></table></figure>
+<p>server的id随意填写，只要和pom.xml里面对应就行了。</p>
+<h3 id="配置pom-xml"><a href="#配置pom-xml" class="headerlink" title="配置pom.xml"></a>配置pom.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">&lt;name&gt;Method Logger&lt;/name&gt;</span><br><span class="line">&lt;description&gt;使用编译时注解打印方法入参出参和耗时&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">&lt;url&gt;http://www.dexcoder.com/&lt;/url&gt;</span><br><span class="line">&lt;licenses&gt;</span><br><span class="line">    &lt;license&gt;</span><br><span class="line">        &lt;name&gt;The Apache Software License, Version 2.0&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;</span><br><span class="line">    &lt;/license&gt;</span><br><span class="line">&lt;/licenses&gt;</span><br><span class="line">&lt;developers&gt;</span><br><span class="line">    &lt;developer&gt;</span><br><span class="line">        &lt;name&gt;kangyonggan&lt;/name&gt;</span><br><span class="line">        &lt;email&gt;java@kangyonggan.com&lt;/email&gt;</span><br><span class="line">    &lt;/developer&gt;</span><br><span class="line">&lt;/developers&gt;</span><br><span class="line">&lt;scm&gt;</span><br><span class="line">    &lt;connection&gt;scm:git:git@github.com/kangyonggan/method-logger.git&lt;/connection&gt;</span><br><span class="line">    &lt;developerConnection&gt;scm:git:git@github.com/kangyonggan/method-logger.git&lt;/developerConnection&gt;</span><br><span class="line">    &lt;url&gt;git@github.com/kangyonggan/method-logger.git&lt;/url&gt;</span><br><span class="line">&lt;/scm&gt;</span><br><span class="line"></span><br><span class="line">&lt;profiles&gt;</span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">        &lt;id&gt;release&lt;/id&gt;</span><br><span class="line">        &lt;build&gt;</span><br><span class="line">            &lt;plugins&gt;</span><br><span class="line">                &lt;!-- Source --&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.2.1&lt;/version&gt;</span><br><span class="line">                    &lt;executions&gt;</span><br><span class="line">                        &lt;execution&gt;</span><br><span class="line">                            &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">                            &lt;goals&gt;</span><br><span class="line">                                &lt;goal&gt;jar-no-fork&lt;/goal&gt;</span><br><span class="line">                            &lt;/goals&gt;</span><br><span class="line">                        &lt;/execution&gt;</span><br><span class="line">                    &lt;/executions&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">                &lt;!-- Javadoc --&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;2.9.1&lt;/version&gt;</span><br><span class="line">                    &lt;executions&gt;</span><br><span class="line">                        &lt;execution&gt;</span><br><span class="line">                            &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">                            &lt;goals&gt;</span><br><span class="line">                                &lt;goal&gt;jar&lt;/goal&gt;</span><br><span class="line">                            &lt;/goals&gt;</span><br><span class="line">                        &lt;/execution&gt;</span><br><span class="line">                    &lt;/executions&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">                &lt;!-- GPG --&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-gpg-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;1.6&lt;/version&gt;</span><br><span class="line">                    &lt;executions&gt;</span><br><span class="line">                        &lt;execution&gt;</span><br><span class="line">                            &lt;phase&gt;verify&lt;/phase&gt;</span><br><span class="line">                            &lt;goals&gt;</span><br><span class="line">                                &lt;goal&gt;sign&lt;/goal&gt;</span><br><span class="line">                            &lt;/goals&gt;</span><br><span class="line">                        &lt;/execution&gt;</span><br><span class="line">                    &lt;/executions&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">            &lt;/plugins&gt;</span><br><span class="line">        &lt;/build&gt;</span><br><span class="line">        &lt;distributionManagement&gt;</span><br><span class="line">            &lt;snapshotRepository&gt;</span><br><span class="line">                &lt;id&gt;oss&lt;/id&gt;</span><br><span class="line">                &lt;url&gt;https://oss.sonatype.org/content/repositories/snapshots/&lt;/url&gt;</span><br><span class="line">            &lt;/snapshotRepository&gt;</span><br><span class="line">            &lt;repository&gt;</span><br><span class="line">                &lt;id&gt;oss&lt;/id&gt;</span><br><span class="line">                &lt;url&gt;https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;</span><br><span class="line">            &lt;/repository&gt;</span><br><span class="line">        &lt;/distributionManagement&gt;</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">&lt;/profiles&gt;</span><br></pre></td></tr></table></figure>
+<p>如果你的英文很六，description标签最好用英文来写，逼格更高。其他值你看着填写就好。</p>
+<blockquote>
+<p>repository-&gt;id 要和 setting.xml 中的保持一致。</p>
+</blockquote>
+<h3 id="上传构件到-OSS-中"><a href="#上传构件到-OSS-中" class="headerlink" title="上传构件到 OSS 中"></a>上传构件到 OSS 中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean deploy -P release</span><br></pre></td></tr></table></figure>
+<p>当执行以上 Maven 命令后，如果顺利，就会看见一堆upload信息，部分输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[DEBUG] Using transporter WagonTransporter with priority -1.0 for https://oss.sonatype.org/service/local/staging/deploy/maven2/</span><br><span class="line">[DEBUG] Using connector BasicRepositoryConnector with priority 0.0 for https://oss.sonatype.org/service/local/staging/deploy/maven2/ with username=java@kangyonggan.com, password=***</span><br><span class="line">Uploading: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/1.0/method-logger-1.0.jar</span><br><span class="line">Uploaded: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/1.0/method-logger-1.0.jar (14 KB at 3.6 KB/sec)</span><br><span class="line">Uploading: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/1.0/method-logger-1.0.pom</span><br><span class="line">Uploaded: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/1.0/method-logger-1.0.pom (6 KB at 1.2 KB/sec)</span><br><span class="line">Downloading: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/maven-metadata.xml</span><br><span class="line">[DEBUG] Could not find metadata com.kangyonggan:method-logger/maven-metadata.xml in oss (https://oss.sonatype.org/service/local/staging/deploy/maven2/)</span><br><span class="line">[DEBUG] Writing tracking file /Users/kyg/data/repository/com/kangyonggan/method-logger/resolver-status.properties</span><br><span class="line">Uploading: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/maven-metadata.xml</span><br><span class="line">Uploaded: https://oss.sonatype.org/service/local/staging/deploy/maven2/com/kangyonggan/method-logger/maven-metadata.xml (304 B at 0.2 KB/sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>注意：此时上传的构件并未正式发布到中央仓库中，只是部署到 OSS 中了，下面才是真正的发布</li>
+</ul>
+</blockquote>
+<h3 id="发布构建"><a href="#发布构建" class="headerlink" title="发布构建"></a>发布构建</h3><p>地址：<a href="https://oss.sonatype.org/#stagingRepositories" target="_blank" rel="noopener">https://oss.sonatype.org/#stagingRepositories</a><br>需要使用之前注册的sonatype账号登录。</p>
+<p>点击<code>Staging Repositories</code>菜单，并拉至最下方，会看见自己刚刚deploy的jar包</p>
+<p><img src="/uploads/sona-07.png" alt="sona"></p>
+<p>选择此构建后，点击<code>Close</code>，如下图：</p>
+<p><img src="/uploads/sona-08.png" alt="sona"></p>
+<p>系统会自动验证该构件是否满足指定要求，当验证完毕后，状态会变为 Closed。然后点击<code>Release</code>。</p>
+<h3 id="通知-Sonatype-构件已成功发布"><a href="#通知-Sonatype-构件已成功发布" class="headerlink" title="通知 Sonatype 构件已成功发布"></a>通知 Sonatype 构件已成功发布</h3><p>找到之前创建的Issue，并回复：<code>构建已发布</code></p>
+<p><img src="/uploads/sona-04.png" alt="sona"></p>
+<h3 id="等待构件审批通过"><a href="#等待构件审批通过" class="headerlink" title="等待构件审批通过"></a>等待构件审批通过</h3><p>等待大概一个工作日内，如果审核通过，Issue会有回复：</p>
+<p><img src="/uploads/sona-05.png" alt="sona"></p>
+<blockquote>
+<ul>
+<li>大概需要2个小时才能把jar同步到中央仓库。</li>
+</ul>
+</blockquote>
+<h3 id="从中央仓库搜索自己发布的jar"><a href="#从中央仓库搜索自己发布的jar" class="headerlink" title="从中央仓库搜索自己发布的jar"></a>从中央仓库搜索自己发布的jar</h3><p>地址：<a href="http://mvnrepository.com/" target="_blank" rel="noopener">http://mvnrepository.com/</a><br>搜索,如：<code>com.kangyonggan</code>, 结果如下：</p>
+<p><img src="/uploads/sona-09.png" alt="sona"></p>
+<p>据我实际测试发现，大概release之后不超过20分钟，就可以在<a href="https://repo.maven.apache.org/maven2/" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2/</a>这里查看到了，只要这里有了，别人就可以依赖这个jar了。</p>
+<blockquote>
+<ul>
+<li>二次发布同一个构建（只要groupId不变）的过程就不用这么麻烦，后面就不用再Issue中操作了。</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/ipay.png" alt="康永敢 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/06/利用编译时注解增强方法/" rel="next" title="利用编译时注解增强方法">
+                <i class="fa fa-chevron-left"></i> 利用编译时注解增强方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" rel="prev" title="SpringMVC结合拦截器、注解实现简单的防重复提交">
+                SpringMVC结合拦截器、注解实现简单的防重复提交 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="康永敢" />
+            
+              <p class="site-author-name" itemprop="name">康永敢</p>
+              <p class="site-description motion-element" itemprop="description">控技寂已</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kangyonggan/" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册sonatype账号"><span class="nav-number">1.</span> <span class="nav-text">注册sonatype账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个issue"><span class="nav-number">2.</span> <span class="nav-text">创建一个issue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-GPG-生成密钥对"><span class="nav-number">3.</span> <span class="nav-text">使用 GPG 生成密钥对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将公钥发布到-PGP-密钥服务器"><span class="nav-number">4.</span> <span class="nav-text">将公钥发布到 PGP 密钥服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置setting-xml"><span class="nav-number">5.</span> <span class="nav-text">配置setting.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置pom-xml"><span class="nav-number">6.</span> <span class="nav-text">配置pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传构件到-OSS-中"><span class="nav-number">7.</span> <span class="nav-text">上传构件到 OSS 中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布构建"><span class="nav-number">8.</span> <span class="nav-text">发布构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通知-Sonatype-构件已成功发布"><span class="nav-number">9.</span> <span class="nav-text">通知 Sonatype 构件已成功发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待构件审批通过"><span class="nav-number">10.</span> <span class="nav-text">等待构件审批通过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从中央仓库搜索自己发布的jar"><span class="nav-number">11.</span> <span class="nav-text">从中央仓库搜索自己发布的jar</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康永敢</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytKHgS79';
+      var conf = '1f9727302ea074278a18f25757248784';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
