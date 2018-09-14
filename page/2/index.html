@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" itemprop="url">SpringMVC结合拦截器、注解实现简单的防重复提交</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" class="cy_cmt_count" data-xid="2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,16 +411,19 @@
 
       
         
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
-<ol>
-<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
-<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
-<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
-<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
+          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>在请求一个表单页面时，服务端生成一个随机的token，把token放入session中并回传到前端页面。</li>
+<li>前端表单把token作为一个隐藏域提交给服务端。</li>
+<li>服务端校验提交的token和session中的token是否一致来判断是否是重复提交，然后清除session中的token。</li>
+</ol>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><ol>
+<li>服务端：在请求一个表单页面的controller的方法上加上注解@Token，即可生成token，放入session并回传到前端。</li>
+<li>客户端：我使用的是freemarker，想使用宏定义来封装一下表单组件，如果这个表单需要做防重复提交，只需要传入token=true即可，它会自动加入一个隐藏域，其值为服务端回传的token。</li>
+<li>服务端：如果表单提交的controller的方法上有注解@Token(type = Token.Type.CHECK),那么就校验session中的token和提交的token是否一致，从而判断是否是重复提交。</li>
 </ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -631,6 +634,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/使用Spring配置多数据源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/使用Spring配置多数据源/" itemprop="url">使用Spring配置多数据源</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/使用Spring配置多数据源/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/使用Spring配置多数据源/" class="cy_cmt_count" data-xid="2018/08/06/使用Spring配置多数据源/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="两个dataSources"><a href="#两个dataSources" class="headerlink" title="两个dataSources"></a>两个dataSources</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置dbcp数据源 - dev --&gt;</span><br><span class="line">&lt;bean id=&quot;dataSourceDev&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span><br><span class="line">      destroy-method=&quot;close&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;ehelper.jdbc.driver&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;url&quot; value=&quot;$&#123;ehelper.jdbc.url.dev&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;username&quot; value=&quot;$&#123;ehelper.jdbc.username.dev&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;password&quot; value=&quot;$&#123;ehelper.jdbc.password.dev&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">    &lt;property name=&quot;initialSize&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;minIdle&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxActive&quot; value=&quot;100&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置获取连接等待超时的时间 --&gt;</span><br><span class="line">    &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=&quot;validationQuery&quot; value=&quot;SELECT &apos;x&apos;&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 打开PSCache，并且指定每个连接上PSCache的大小 --&gt;</span><br><span class="line">    &lt;property name=&quot;poolPreparedStatements&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxPoolPreparedStatementPerConnectionSize&quot; value=&quot;20&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 关闭长时间不使用的连接 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1200&quot; &gt;&lt;/property&gt; &lt;!-- 1200秒，也就是20分钟 --&gt;</span><br><span class="line">    &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置dbcp数据源 - uat --&gt;</span><br><span class="line">&lt;bean id=&quot;dataSourceUat&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span><br><span class="line">      destroy-method=&quot;close&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;ehelper.jdbc.driver&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;url&quot; value=&quot;$&#123;ehelper.jdbc.url.uat&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;username&quot; value=&quot;$&#123;ehelper.jdbc.username.uat&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;password&quot; value=&quot;$&#123;ehelper.jdbc.password.uat&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">    &lt;property name=&quot;initialSize&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;minIdle&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxActive&quot; value=&quot;100&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置获取连接等待超时的时间 --&gt;</span><br><span class="line">    &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=&quot;validationQuery&quot; value=&quot;SELECT &apos;x&apos;&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 打开PSCache，并且指定每个连接上PSCache的大小 --&gt;</span><br><span class="line">    &lt;property name=&quot;poolPreparedStatements&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxPoolPreparedStatementPerConnectionSize&quot; value=&quot;20&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 关闭长时间不使用的连接 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1200&quot; &gt;&lt;/property&gt; &lt;!-- 1200秒，也就是20分钟 --&gt;</span><br><span class="line">    &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/使用Spring配置多数据源/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -741,163 +901,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/使用Spring配置多数据源/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/使用Spring配置多数据源/" itemprop="url">使用Spring配置多数据源</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/使用Spring配置多数据源/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/使用Spring配置多数据源/" class="cy_cmt_count" data-xid="2018/08/06/使用Spring配置多数据源/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="两个dataSources"><a href="#两个dataSources" class="headerlink" title="两个dataSources"></a>两个dataSources</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置dbcp数据源 - dev --&gt;</span><br><span class="line">&lt;bean id=&quot;dataSourceDev&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span><br><span class="line">      destroy-method=&quot;close&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;ehelper.jdbc.driver&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;url&quot; value=&quot;$&#123;ehelper.jdbc.url.dev&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;username&quot; value=&quot;$&#123;ehelper.jdbc.username.dev&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;password&quot; value=&quot;$&#123;ehelper.jdbc.password.dev&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">    &lt;property name=&quot;initialSize&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;minIdle&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxActive&quot; value=&quot;100&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置获取连接等待超时的时间 --&gt;</span><br><span class="line">    &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=&quot;validationQuery&quot; value=&quot;SELECT &apos;x&apos;&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 打开PSCache，并且指定每个连接上PSCache的大小 --&gt;</span><br><span class="line">    &lt;property name=&quot;poolPreparedStatements&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxPoolPreparedStatementPerConnectionSize&quot; value=&quot;20&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 关闭长时间不使用的连接 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1200&quot; &gt;&lt;/property&gt; &lt;!-- 1200秒，也就是20分钟 --&gt;</span><br><span class="line">    &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置dbcp数据源 - uat --&gt;</span><br><span class="line">&lt;bean id=&quot;dataSourceUat&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span><br><span class="line">      destroy-method=&quot;close&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;ehelper.jdbc.driver&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;url&quot; value=&quot;$&#123;ehelper.jdbc.url.uat&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;username&quot; value=&quot;$&#123;ehelper.jdbc.username.uat&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;password&quot; value=&quot;$&#123;ehelper.jdbc.password.uat&#125;&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">    &lt;property name=&quot;initialSize&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;minIdle&quot; value=&quot;5&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxActive&quot; value=&quot;100&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置获取连接等待超时的时间 --&gt;</span><br><span class="line">    &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=&quot;validationQuery&quot; value=&quot;SELECT &apos;x&apos;&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 打开PSCache，并且指定每个连接上PSCache的大小 --&gt;</span><br><span class="line">    &lt;property name=&quot;poolPreparedStatements&quot; value=&quot;true&quot; &gt;&lt;/property&gt;</span><br><span class="line">    &lt;property name=&quot;maxPoolPreparedStatementPerConnectionSize&quot; value=&quot;20&quot; &gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 关闭长时间不使用的连接 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">    &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1200&quot; &gt;&lt;/property&gt; &lt;!-- 1200秒，也就是20分钟 --&gt;</span><br><span class="line">    &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; &gt;&lt;/property&gt; &lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/使用Spring配置多数据源/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
