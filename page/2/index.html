@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" itemprop="url">SpringMVC结合拦截器、注解实现简单的防重复提交</a></h1>
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" class="cy_cmt_count" data-xid="2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,19 +411,16 @@
 
       
         
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li>在请求一个表单页面时，服务端生成一个随机的token，把token放入session中并回传到前端页面。</li>
-<li>前端表单把token作为一个隐藏域提交给服务端。</li>
-<li>服务端校验提交的token和session中的token是否一致来判断是否是重复提交，然后清除session中的token。</li>
-</ol>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><ol>
-<li>服务端：在请求一个表单页面的controller的方法上加上注解@Token，即可生成token，放入session并回传到前端。</li>
-<li>客户端：我使用的是freemarker，想使用宏定义来封装一下表单组件，如果这个表单需要做防重复提交，只需要传入token=true即可，它会自动加入一个隐藏域，其值为服务端回传的token。</li>
-<li>服务端：如果表单提交的controller的方法上有注解@Token(type = Token.Type.CHECK),那么就校验session中的token和提交的token是否一致，从而判断是否是重复提交。</li>
+          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
+<ol>
+<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
+<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
+<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
+<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
 </ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
