@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="markdown编辑器下面是使用freemarker定义的宏，是一个markdown编辑器。 123456789101112131415161718192021222324&amp;lt;#--markdown编辑器--&amp;gt;&amp;lt;#macro markdown name id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;&amp;lt;#if id==&amp;quot;&amp;quot;&amp;gt">
+<meta name="description" content="markdown编辑器下面是使用freemarker定义的宏，是一个markdown编辑器。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="纯前端markdown编辑器及解析">
 <meta property="og:url" content="http://kangyonggan.com/2019/01/08/纯前端markdown编辑器及解析/index.html">
 <meta property="og:site_name" content="东方娇子">
-<meta property="og:description" content="markdown编辑器下面是使用freemarker定义的宏，是一个markdown编辑器。 123456789101112131415161718192021222324&amp;lt;#--markdown编辑器--&amp;gt;&amp;lt;#macro markdown name id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;&amp;lt;#if id==&amp;quot;&amp;quot;&amp;gt">
+<meta property="og:description" content="markdown编辑器下面是使用freemarker定义的宏，是一个markdown编辑器。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-08T06:49:00.000Z">
+<meta property="og:updated_time" content="2019-01-08T06:56:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="纯前端markdown编辑器及解析">
-<meta name="twitter:description" content="markdown编辑器下面是使用freemarker定义的宏，是一个markdown编辑器。 123456789101112131415161718192021222324&amp;lt;#--markdown编辑器--&amp;gt;&amp;lt;#macro markdown name id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;&amp;lt;#if id==&amp;quot;&amp;quot;&amp;gt">
+<meta name="twitter:description" content="markdown编辑器下面是使用freemarker定义的宏，是一个markdown编辑器。">
 
 
 
@@ -409,6 +409,7 @@
 
       
         <h2 id="markdown编辑器"><a href="#markdown编辑器" class="headerlink" title="markdown编辑器"></a>markdown编辑器</h2><p>下面是使用freemarker定义的宏，是一个markdown编辑器。</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--markdown编辑器--&gt;</span><br><span class="line">&lt;#macro markdown name id=&quot;&quot; value=&quot;&quot;&gt;</span><br><span class="line">&lt;#if id==&quot;&quot;&gt;</span><br><span class="line">    &lt;#local id=func(&apos;uuid&apos;, &apos;id&apos;)/&gt;</span><br><span class="line">&lt;/#if&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;$&#123;ctx&#125;/libs/editor.md/css/editormd.css&quot;/&gt;</span><br><span class="line">&lt;div id=&quot;$&#123;id&#125;&quot;&gt;</span><br><span class="line">    &lt;textarea style=&quot;display: none&quot; name=&quot;$&#123;name&#125;&quot;&gt;$&#123;value&#125;&lt;/textarea&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md/editormd.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    $(function () &#123;</span><br><span class="line">        editormd(&quot;$&#123;id&#125;&quot;, &#123;</span><br><span class="line">            height: 600,</span><br><span class="line">            syncScrolling: &quot;single&quot;,</span><br><span class="line">            path: &quot;$&#123;ctx&#125;/libs/editor.md/lib/&quot;,</span><br><span class="line">            emoji: true,</span><br><span class="line">            imageUpload: true,</span><br><span class="line">            imageUploadURL: &quot;$&#123;ctx&#125;/file/markdown&quot;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/#macro&gt;</span><br></pre></td></tr></table></figure>
 <p>用例：&lt;@ca.markdown name=”content” value=”${article.content!’’}”/&gt;</p>
 <ol>
