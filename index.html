@@ -308,6 +308,633 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2019/01/08/纯前端markdown编辑器及解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/纯前端markdown编辑器及解析/" itemprop="url">纯前端markdown编辑器及解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T14:37:21+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/01/08/纯前端markdown编辑器及解析/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2019/01/08/纯前端markdown编辑器及解析/" class="cy_cmt_count" data-xid="2019/01/08/纯前端markdown编辑器及解析/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="markdown编辑器"><a href="#markdown编辑器" class="headerlink" title="markdown编辑器"></a>markdown编辑器</h2><p>下面是使用freemarker定义的宏，是一个markdown编辑器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--markdown编辑器--&gt;</span><br><span class="line">&lt;#macro markdown name id=&quot;&quot; value=&quot;&quot;&gt;</span><br><span class="line">&lt;#if id==&quot;&quot;&gt;</span><br><span class="line">    &lt;#local id=func(&apos;uuid&apos;, &apos;id&apos;)/&gt;</span><br><span class="line">&lt;/#if&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;$&#123;ctx&#125;/libs/editor.md/css/editormd.css&quot;/&gt;</span><br><span class="line">&lt;div id=&quot;$&#123;id&#125;&quot;&gt;</span><br><span class="line">    &lt;textarea style=&quot;display: none&quot; name=&quot;$&#123;name&#125;&quot;&gt;$&#123;value&#125;&lt;/textarea&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md/editormd.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    $(function () &#123;</span><br><span class="line">        editormd(&quot;$&#123;id&#125;&quot;, &#123;</span><br><span class="line">            height: 600,</span><br><span class="line">            syncScrolling: &quot;single&quot;,</span><br><span class="line">            path: &quot;$&#123;ctx&#125;/libs/editor.md/lib/&quot;,</span><br><span class="line">            emoji: true,</span><br><span class="line">            imageUpload: true,</span><br><span class="line">            imageUploadURL: &quot;$&#123;ctx&#125;/file/markdown&quot;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/#macro&gt;</span><br></pre></td></tr></table></figure>
+<p>用例：&lt;@ca.markdown name=”content” value=”${article.content!’’}”/&gt;</p>
+<ol>
+<li>editor.md官网地址：<a href="http://pandao.github.io/editor.md/examples/" target="_blank" rel="noopener">http://pandao.github.io/editor.md/examples/</a></li>
+<li>&lt;#local id=func(‘uuid’, ‘id’)/&gt; 是产生一个uuid。</li>
+<li>imageUploadURL 是图片上传地址，需要写一个controller，如下。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * md编辑器文件、图片上传</span><br><span class="line"> *</span><br><span class="line"> * @param request 请求</span><br><span class="line"> * @return 响应</span><br><span class="line"> */</span><br><span class="line">@PostMapping(&quot;markdown&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public Response markdown(HttpServletRequest request) &#123;</span><br><span class="line">    Response response = Response.getResponse();</span><br><span class="line">    ServletContext context = request.getServletContext();</span><br><span class="line"></span><br><span class="line">    //上传本地文件</span><br><span class="line">    int success = 0;</span><br><span class="line">    String message = &quot;上传成功&quot;;</span><br><span class="line">    try &#123;</span><br><span class="line">        MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;</span><br><span class="line">        Iterator iterator = multiRequest.getFileNames();</span><br><span class="line">        if (iterator.hasNext()) &#123;</span><br><span class="line">            MultipartFile file = multiRequest.getFile(iterator.next().toString());</span><br><span class="line">            String fileName = ftpService.genFileName(&quot;ARTICLE&quot;);</span><br><span class="line">            // 上传到本地</span><br><span class="line">            FileUpload.upload(fileUploadPath, fileName, file);</span><br><span class="line"></span><br><span class="line">            fileName += &quot;.&quot; + FilenameUtils.getExtension(file.getOriginalFilename());</span><br><span class="line">            response.put(&quot;url&quot;, context.getContextPath() + &quot;/upload/&quot; + fileName);</span><br><span class="line">            success = 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        log.error(&quot;编辑器上传文件失败&quot;, e);</span><br><span class="line">        message = &quot;网络异常，请稍后再试!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    response.put(&quot;success&quot;, success);</span><br><span class="line">    response.put(&quot;message&quot;, message);</span><br><span class="line">    return response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是要返回一个Map, 并带有success和message参数。</p>
+<h2 id="解析markdown内容"><a href="#解析markdown内容" class="headerlink" title="解析markdown内容"></a>解析markdown内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;#--markdown2html--&gt;</span><br><span class="line">&lt;#macro md2html content&gt;</span><br><span class="line">    &lt;#local uuid=func(&apos;uuid&apos;, &apos;id&apos;)/&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;$&#123;ctx&#125;/libs/editor.md/css/editormd.preview.css&quot;/&gt;</span><br><span class="line">&lt;div id=&quot;$&#123;uuid&#125;&quot; class=&quot;markdown-content&quot;&gt;</span><br><span class="line">    &lt;textarea style=&quot;display: none&quot;&gt;$&#123;content&#125;&lt;/textarea&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/marked.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/prettify.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/raphael.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/underscore.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/sequence-diagram.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/flowchart.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md//lib/jquery.flowchart.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;$&#123;ctx&#125;/libs/editor.md/editormd.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(function () &#123;</span><br><span class="line">        editormd.markdownToHTML(&quot;$&#123;uuid&#125;&quot;, &#123;</span><br><span class="line">            path: &quot;$&#123;ctx&#125;/libs/editor.md/lib/&quot;,</span><br><span class="line">            htmlDecode: &quot;style,script,iframe&quot;,  // you can filter tags decode</span><br><span class="line">            emoji: true,</span><br><span class="line">            taskList: true,</span><br><span class="line">            tex: true,  // 默认不解析</span><br><span class="line">            flowChart: true,  // 默认不解析</span><br><span class="line">            sequenceDiagram: true  // 默认不解析</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/#macro&gt;</span><br></pre></td></tr></table></figure>
+<p>用例：&lt;@ca.md2html content=”${article.content}”/&gt;</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2019/01/08/js实现上拉加载更多/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/js实现上拉加载更多/" itemprop="url">js实现上拉加载更多</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T14:31:07+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/01/08/js实现上拉加载更多/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2019/01/08/js实现上拉加载更多/" class="cy_cmt_count" data-xid="2019/01/08/js实现上拉加载更多/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取滚动条的位置</span><br><span class="line"> *</span><br><span class="line"> * @returns &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">function getScrollTop() &#123;</span><br><span class="line">    var scrollTop = 0;</span><br><span class="line">    if (document.documentElement &amp;&amp; document.documentElement.scrollTop) &#123;</span><br><span class="line">        scrollTop = document.documentElement.scrollTop;</span><br><span class="line">    &#125; else if (document.body) &#123;</span><br><span class="line">        scrollTop = document.body.scrollTop;</span><br><span class="line">    &#125;</span><br><span class="line">    return scrollTop;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 获取当前可视范围的高度</span><br><span class="line"> *</span><br><span class="line"> * @returns &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">function getClientHeight() &#123;</span><br><span class="line">    var clientHeight = 0;</span><br><span class="line">    if (document.body.clientHeight &amp;&amp; document.documentElement.clientHeight) &#123;</span><br><span class="line">        clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);</span><br><span class="line">    &#125;</span><br><span class="line">    return clientHeight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 获取文档完整的高度</span><br><span class="line"> *</span><br><span class="line"> * @returns &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">function getScrollHeight() &#123;</span><br><span class="line">    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 是否还有更多内容</span><br><span class="line"> */</span><br><span class="line">var hasMore = true;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 上拉加载更多事件</span><br><span class="line"> */</span><br><span class="line">window.onscroll = function () &#123;</span><br><span class="line">    if (hasMore &amp;&amp; getScrollTop() + getClientHeight() === getScrollHeight()) &#123;</span><br><span class="line">        console.log(&quot;加载更多...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当没有更多内容时，把hasMore置为false，否则会一直去尝试加载更多</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2019/01/08/js返回上一页的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/js返回上一页的实现/" itemprop="url">js返回上一页的实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T14:29:10+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/01/08/js返回上一页的实现/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2019/01/08/js返回上一页的实现/" class="cy_cmt_count" data-xid="2019/01/08/js返回上一页的实现/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果有上一页则返回上一页，如果没上一页（直接输入url打开的网页）则返回首页。兼容主流浏览器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 返回</span><br><span class="line"> */</span><br><span class="line">function goBack() &#123;</span><br><span class="line">    if ((navigator.userAgent.indexOf(&apos;MSIE&apos;) &gt;= 0) &amp;&amp; (navigator.userAgent.indexOf(&apos;Opera&apos;) &lt; 0)) &#123;</span><br><span class="line">        // IE</span><br><span class="line">        if (history.length &gt; 0) &#123;</span><br><span class="line">            window.history.go(-1);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            window.location.href = ctx + &quot;/&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 非IE浏览器</span><br><span class="line">        if (navigator.userAgent.indexOf(&apos;Firefox&apos;) &gt;= 0 ||</span><br><span class="line">            navigator.userAgent.indexOf(&apos;Opera&apos;) &gt;= 0 ||</span><br><span class="line">            navigator.userAgent.indexOf(&apos;Safari&apos;) &gt;= 0 ||</span><br><span class="line">            navigator.userAgent.indexOf(&apos;Chrome&apos;) &gt;= 0 ||</span><br><span class="line">            navigator.userAgent.indexOf(&apos;WebKit&apos;) &gt;= 0) &#123;</span><br><span class="line"></span><br><span class="line">            if (window.history.length &gt; 1) &#123;</span><br><span class="line">                window.history.go(-1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                window.location.href = ctx + &quot;/&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 未知的浏览器</span><br><span class="line">            window.history.go(-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2019/01/08/js检测浏览器是PC端还是手机端/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/js检测浏览器是PC端还是手机端/" itemprop="url">js检测浏览器是PC端还是手机端</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T14:23:14+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/01/08/js检测浏览器是PC端还是手机端/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2019/01/08/js检测浏览器是PC端还是手机端/" class="cy_cmt_count" data-xid="2019/01/08/js检测浏览器是PC端还是手机端/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function IsPC() &#123;</span><br><span class="line">    var userAgentInfo = navigator.userAgent;</span><br><span class="line">    var Agents = [&quot;Android&quot;, &quot;iPhone&quot;,</span><br><span class="line">        &quot;SymbianOS&quot;, &quot;Windows Phone&quot;,</span><br><span class="line">        &quot;iPad&quot;, &quot;iPod&quot;];</span><br><span class="line">    var flag = true;</span><br><span class="line">    for (var v = 0; v &lt; Agents.length; v++) &#123;</span><br><span class="line">        if (userAgentInfo.indexOf(Agents[v]) &gt; 0) &#123;</span><br><span class="line">            flag = false;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//true为PC端，false为手机端</span><br><span class="line">var flag = IsPC();</span><br><span class="line">if (!flag) &#123;</span><br><span class="line">    window.location.href = &quot;$&#123;ctx&#125;/wap&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/10/29/支付宝扫码支付的开发过程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -458,659 +1085,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/10/29/微信扫码支付的开发过程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/29/微信扫码支付的开发过程/" itemprop="url">微信扫码支付的开发过程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T15:25:20+08:00">
-                2018-10-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/10/29/微信扫码支付的开发过程/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/10/29/微信扫码支付的开发过程/" class="cy_cmt_count" data-xid="2018/10/29/微信扫码支付的开发过程/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="名词定义"><a href="#名词定义" class="headerlink" title="名词定义"></a>名词定义</h2><ul>
-<li>用户：在我们网站上交易的客户。</li>
-<li>支付网关：是我们商户和微信支付平台对接的系统。</li>
-<li>商户系统：充值成功后用于发货的系统。</li>
-<li>微信支付平台：是腾讯的微信支付平台。</li>
-</ul>
-<h2 id="微信支付官网地址"><a href="#微信支付官网地址" class="headerlink" title="微信支付官网地址"></a>微信支付官网地址</h2><p>扫码支付介绍：<a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_1" target="_blank" rel="noopener">https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_1</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/29/微信扫码支付的开发过程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/10/26/境外支付平台PayPal接口的开发过程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/境外支付平台PayPal接口的开发过程/" itemprop="url">境外支付平台PayPal接口的开发过程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T16:47:19+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/10/26/境外支付平台PayPal接口的开发过程/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/10/26/境外支付平台PayPal接口的开发过程/" class="cy_cmt_count" data-xid="2018/10/26/境外支付平台PayPal接口的开发过程/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="名词定义"><a href="#名词定义" class="headerlink" title="名词定义"></a>名词定义</h2><ul>
-<li>用户：在我们网站上交易的客户。</li>
-<li>支付网关：是我们商户和PayPal对接的系统。</li>
-<li>商户系统：充值成功后用于发货的系统。</li>
-<li>PayPal：是海外的一家支付平台。</li>
-</ul>
-<h2 id="PayPal官网地址"><a href="#PayPal官网地址" class="headerlink" title="PayPal官网地址"></a>PayPal官网地址</h2><p>官网：<a href="https://paypal.com" target="_blank" rel="noopener">https://paypal.com</a><br>开发者网站：<a href="https://developer.paypal.com" target="_blank" rel="noopener">https://developer.paypal.com</a><br>沙盒地址：<a href="https://www.sandbox.paypal.com/" target="_blank" rel="noopener">https://www.sandbox.paypal.com/</a><br>Demo地址：<a href="https://demo.paypal.com" target="_blank" rel="noopener">https://demo.paypal.com</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/26/境外支付平台PayPal接口的开发过程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/09/14/MySQL查询车手所有赛道的最佳排名/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/14/MySQL查询车手所有赛道的最佳排名/" itemprop="url">MySQL查询车手所有赛道的最佳排名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T12:40:22+08:00">
-                2018-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/09/14/MySQL查询车手所有赛道的最佳排名/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/09/14/MySQL查询车手所有赛道的最佳排名/" class="cy_cmt_count" data-xid="2018/09/14/MySQL查询车手所有赛道的最佳排名/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>不相关字段不在此列出</p>
-<h3 id="赛局表"><a href="#赛局表" class="headerlink" title="赛局表"></a>赛局表</h3><ul>
-<li>赛局ID - BIGINT</li>
-<li>赛道 - INTEGER</li>
-</ul>
-<h3 id="成绩表"><a href="#成绩表" class="headerlink" title="成绩表"></a>成绩表</h3><ul>
-<li>赛局ID - BIGINT</li>
-<li>车手 - VARCHAR</li>
-<li>成绩(毫秒) - INTEGER</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/14/MySQL查询车手所有赛道的最佳排名/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/09/02/Ubuntu安装及配置系列-gitlab的安装配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/Ubuntu安装及配置系列-gitlab的安装配置/" itemprop="url">Ubuntu安装及配置系列-gitlab的安装配置.md</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T21:42:16+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统运维/" itemprop="url" rel="index">
-                    <span itemprop="name">系统运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/09/02/Ubuntu安装及配置系列-gitlab的安装配置/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/09/02/Ubuntu安装及配置系列-gitlab的安装配置/" class="cy_cmt_count" data-xid="2018/09/02/Ubuntu安装及配置系列-gitlab的安装配置/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gitlab-ce</span><br></pre></td></tr></table></figure>
-<h2 id="启动、停止、重启"><a href="#启动、停止、重启" class="headerlink" title="启动、停止、重启"></a>启动、停止、重启</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl start</span><br><span class="line">sudo gitlab-ctl stop</span><br><span class="line">sudo gitlab-ctl restart</span><br></pre></td></tr></table></figure>
-<h2 id="修改root的默认密码"><a href="#修改root的默认密码" class="headerlink" title="修改root的默认密码"></a>修改root的默认密码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rails console production</span><br><span class="line">&gt; user = User.where(id: 1).first</span><br><span class="line">&gt; user.password=12345678</span><br><span class="line">&gt; user.password_confirmation=12345678</span><br><span class="line">&gt; user.save!</span><br><span class="line">&gt; quit</span><br></pre></td></tr></table></figure>
-<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><p><a href="http://localhost/" target="_blank" rel="noopener">http://localhost/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1160,7 +1139,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">134</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1236,7 +1215,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
