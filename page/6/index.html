@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="东方娇子" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="东方骄子" type="application/atom+xml" />
 
 
 
@@ -83,13 +83,13 @@
 
 <meta name="description" content="控技寂已">
 <meta property="og:type" content="website">
-<meta property="og:title" content="东方娇子">
+<meta property="og:title" content="东方骄子">
 <meta property="og:url" content="http://kangyonggan.com/page/6/index.html">
-<meta property="og:site_name" content="东方娇子">
+<meta property="og:site_name" content="东方骄子">
 <meta property="og:description" content="控技寂已">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="东方娇子">
+<meta name="twitter:title" content="东方骄子">
 <meta name="twitter:description" content="控技寂已">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>东方娇子</title>
+  <title>东方骄子</title>
   
 
 
@@ -167,7 +167,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">东方娇子</span>
+        <span class="site-title">东方骄子</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -317,7 +317,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
+      <meta itemprop="name" content="东方骄子">
     </span>
 
     
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（四）/" itemprop="url">编译时注解从入门到精通（四）</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/编译时注解从入门到精通（四）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（四）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（四）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,16 +411,12 @@
 
       
         
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
-<ol>
-<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
-<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
-<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
-<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
-</ol>
+          <p>本篇文章是以类元素(element)为主体进行探讨的。为了简化代码，我把类元素的两个兄弟提前声明出来：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 类的标识</span><br><span class="line">Symbol.ClassSymbol classSym = (Symbol.ClassSymbol) element;</span><br><span class="line"></span><br><span class="line">// 类的声明</span><br><span class="line">JCTree.JCClassDecl classDecl = (JCTree.JCClassDecl) trees.getTree(element);</span><br></pre></td></tr></table></figure>
+<h2 id="查询相关"><a href="#查询相关" class="headerlink" title="查询相关"></a>查询相关</h2><h3 id="获取类的全路径"><a href="#获取类的全路径" class="headerlink" title="获取类的全路径"></a>获取类的全路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取类的全路径</span><br><span class="line"> *</span><br><span class="line"> * @return 返回类的全路径</span><br><span class="line"> */</span><br><span class="line">public String getFullName() &#123;</span><br><span class="line">    return classSym.fullname.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（四）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -471,7 +467,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （三）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/CSS3实现加载中的动画效果/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -480,7 +476,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
+      <meta itemprop="name" content="东方骄子">
     </span>
 
     
@@ -490,7 +486,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/学习Activiti 6.0.0 （三）/" itemprop="url">学习Activiti 6.0.0 （三）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/CSS3实现加载中的动画效果/" itemprop="url">CSS3实现加载中的动画效果</a></h1>
         
 
         <div class="post-meta">
@@ -525,8 +521,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
                   </a>
                 </span>
 
@@ -544,8 +540,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/学习Activiti 6.0.0 （三）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （三）/" class="cy_cmt_count" data-xid="2018/08/06/学习Activiti 6.0.0 （三）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/CSS3实现加载中的动画效果/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/CSS3实现加载中的动画效果/" class="cy_cmt_count" data-xid="2018/08/06/CSS3实现加载中的动画效果/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -574,11 +570,12 @@
 
       
         
-          <h2 id="流程引擎的接口和服务"><a href="#流程引擎的接口和服务" class="headerlink" title="流程引擎的接口和服务"></a>流程引擎的接口和服务</h2><p>引擎API是与Activiti交互的最常见的方式。中心起始点是ProcessEngine，从ProcessEngine中，可以获得各种服务。ProcessEngine和服务service是线程安全的。因此，可以为整个服务器保留一个引用。</p>
-<p><img src="/uploads/api.services.png" alt=""></p>
+          <h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>主要使用transform的rotate属性，将线条组合成Loading图形 (也就是菊花图形)。</p>
+<p>animation实现将线条颜色由浅到深，再由深到浅来回变换的动画，通过animation-delay属性来使颜色的变换产生过渡的效果，从而达到类似于Loading动画的效果。</p>
+<h3 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;loading&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;line1&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line2&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line3&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line4&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line5&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line6&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line7&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line8&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习Activiti 6.0.0 （三）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/CSS3实现加载中的动画效果/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -638,7 +635,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
+      <meta itemprop="name" content="东方骄子">
     </span>
 
     
@@ -804,7 +801,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
+      <meta itemprop="name" content="东方骄子">
     </span>
 
     
@@ -954,7 +951,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/CSS3实现加载中的动画效果/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -963,7 +960,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
+      <meta itemprop="name" content="东方骄子">
     </span>
 
     
@@ -973,7 +970,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/CSS3实现加载中的动画效果/" itemprop="url">CSS3实现加载中的动画效果</a></h1>
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
         
 
         <div class="post-meta">
@@ -1008,8 +1005,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web前端/" itemprop="url" rel="index">
-                    <span itemprop="name">Web前端</span>
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
                   </a>
                 </span>
 
@@ -1027,8 +1024,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/CSS3实现加载中的动画效果/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/CSS3实现加载中的动画效果/" class="cy_cmt_count" data-xid="2018/08/06/CSS3实现加载中的动画效果/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1057,12 +1054,16 @@
 
       
         
-          <h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>主要使用transform的rotate属性，将线条组合成Loading图形 (也就是菊花图形)。</p>
-<p>animation实现将线条颜色由浅到深，再由深到浅来回变换的动画，通过animation-delay属性来使颜色的变换产生过渡的效果，从而达到类似于Loading动画的效果。</p>
-<h3 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;loading&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;line1&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line2&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line3&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line4&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line5&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line6&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line7&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line8&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
+<ol>
+<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
+<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
+<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
+<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/CSS3实现加载中的动画效果/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
