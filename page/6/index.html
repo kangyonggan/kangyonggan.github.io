@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（五）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（五）/" itemprop="url">编译时注解从入门到精通（五）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（五）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（五）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（五）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,12 +411,16 @@
 
       
         
-          <p>本篇文章是以方法元素(element)为主体进行探讨的。为了简化代码，我把方法元素的两个兄弟提前声明出来：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 方法的标识</span><br><span class="line">Symbol.MethodSymbol methodSym = (Symbol.MethodSymbol) element;</span><br><span class="line"></span><br><span class="line">// 类的声明</span><br><span class="line">JCTree.JCMethodDecl methodDecl = (JCTree.JCMethodDecl) trees.getTree(element);</span><br></pre></td></tr></table></figure>
-<h2 id="查询相关"><a href="#查询相关" class="headerlink" title="查询相关"></a>查询相关</h2><h3 id="获取方法名"><a href="#获取方法名" class="headerlink" title="获取方法名"></a>获取方法名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取方法名</span><br><span class="line"> *</span><br><span class="line"> * @return 返回方法名</span><br><span class="line"> */</span><br><span class="line">public String getMethodName() &#123;</span><br><span class="line">    return methodSym.name.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
+<ol>
+<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
+<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
+<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
+<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（五）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -791,7 +795,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（五）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -810,7 +814,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（五）/" itemprop="url">编译时注解从入门到精通（五）</a></h1>
         
 
         <div class="post-meta">
@@ -864,8 +868,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/编译时注解从入门到精通（五）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（五）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（五）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -894,16 +898,12 @@
 
       
         
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
-<ol>
-<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
-<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
-<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
-<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
-</ol>
+          <p>本篇文章是以方法元素(element)为主体进行探讨的。为了简化代码，我把方法元素的两个兄弟提前声明出来：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 方法的标识</span><br><span class="line">Symbol.MethodSymbol methodSym = (Symbol.MethodSymbol) element;</span><br><span class="line"></span><br><span class="line">// 类的声明</span><br><span class="line">JCTree.JCMethodDecl methodDecl = (JCTree.JCMethodDecl) trees.getTree(element);</span><br></pre></td></tr></table></figure>
+<h2 id="查询相关"><a href="#查询相关" class="headerlink" title="查询相关"></a>查询相关</h2><h3 id="获取方法名"><a href="#获取方法名" class="headerlink" title="获取方法名"></a>获取方法名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取方法名</span><br><span class="line"> *</span><br><span class="line"> * @return 返回方法名</span><br><span class="line"> */</span><br><span class="line">public String getMethodName() &#123;</span><br><span class="line">    return methodSym.name.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（五）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1154,7 +1154,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

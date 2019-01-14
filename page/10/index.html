@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/java.sql.SQLException:connection_holder_is_null/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/java.sql.SQLException:connection_holder_is_null/" itemprop="url">java.sql.SQLException:connection_holder_is_null</a></h1>
+                <a class="post-title-link" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="url">IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)</a></h1>
         
 
         <div class="post-meta">
@@ -362,8 +362,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
                   </a>
                 </span>
 
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/java.sql.SQLException:connection_holder_is_null/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/java.sql.SQLException:connection_holder_is_null/" class="cy_cmt_count" data-xid="2018/08/06/java.sql.SQLException:connection_holder_is_null/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" class="cy_cmt_count" data-xid="2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,16 +411,23 @@
 
       
         
-          
-            <h2 id="异常信息"><a href="#异常信息" class="headerlink" title="异常信息"></a>异常信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.sql.SQLException: connection holder is null</span><br></pre></td></tr></table></figure>
-<h2 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 关闭长时间不使用的连接 --&gt;</span><br><span class="line">&lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt; &lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">&lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1200&quot; /&gt; &lt;!-- 1200秒，也就是20分钟 --&gt;</span><br><span class="line">&lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt; &lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
-<li>removeAbandoned 设置为 false，不建议。</li>
-<li>removeAbandonedTimeout 延长这个过期时间，也不是太建议。</li>
-<li>指定不要关闭某个方法的连接（how？）</li>
-</ol>
-
-          
+          <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul>
+<li>IntelliJ IDEA下载地址：<a href="https://www.jetbrains.com/idea/download" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download</a></li>
+<li>TeamCity下载地址：<a href="https://www.jetbrains.com/teamcity/download" target="_blank" rel="noopener">https://www.jetbrains.com/teamcity/download</a></li>
+<li>Upsource下载地址：<a href="https://www.jetbrains.com/upsource/download" target="_blank" rel="noopener">https://www.jetbrains.com/upsource/download</a></li>
+<li>TeamCity Plugin：<a href="https://plugins.jetbrains.com/plugin/1820-teamcity-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/1820-teamcity-integration</a></li>
+<li>Upsource Pligin：<a href="https://plugins.jetbrains.com/plugin/7431-upsource-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/7431-upsource-integration</a></li>
+<li>阿里巴巴代码质量检测插件：<a href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines</a></li>
+</ul>
+<p>后面三个是idea插件，如果电脑能联网，可以在插件中搜索到直接安装，如果是公司内网，可以下载离线安装包，然后手动安装idea插件。</p>
+<p>安装IDEA插件方法：<code>Preferences &gt; Plugins &gt; Install plugin from disk...</code></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -952,7 +959,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/JDBC连接MySQL数据库的代码片段/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -971,7 +978,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/" itemprop="url">如何把N个苹果按重量相对公平的分配给M个人</a></h1>
+                <a class="post-title-link" href="/2018/08/06/JDBC连接MySQL数据库的代码片段/" itemprop="url">JDBC连接MySQL数据库的代码片段</a></h1>
         
 
         <div class="post-meta">
@@ -1025,8 +1032,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/" class="cy_cmt_count" data-xid="2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/JDBC连接MySQL数据库的代码片段/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/JDBC连接MySQL数据库的代码片段/" class="cy_cmt_count" data-xid="2018/08/06/JDBC连接MySQL数据库的代码片段/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1055,21 +1062,9 @@
 
       
         
-          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>有N个苹果，想要平均分给M个人，而且每个人得到的苹果重量要尽量差不多。</p>
-<p>例如：10个苹果的重量为：<code>{4, 9, 2, 8, 7, 5, 6, 1, 3, 7}</code>。</p>
-<h2 id="方案一：S形分法"><a href="#方案一：S形分法" class="headerlink" title="方案一：S形分法"></a>方案一：S形分法</h2><p>这是大家最容易想到的又是相对简单的，而且还有很高的公平性。XX银行的分案就是采用此法，所以可行性很高。</p>
-<p>思路：  </p>
-<ol>
-<li>先把数组降序（降序比升序更公平）排序，排序结果为：<code>{9, 8, 7, 7, 6, 5, 4, 3, 2, 1}</code>。</li>
-<li>然后把所有苹果从大到小依次分给：P1、P2、P3、P3、P2、P1、P1、P2、P3、P3。也就是S形分法。</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @since 4/25/17</span><br><span class="line"> */</span><br><span class="line">public class ExcelParse605 &#123;</span><br><span class="line"></span><br><span class="line">    private static String url = &quot;jdbc:mysql://127.0.0.1:3306/dfjz?useUnicode=true&amp;characterEncoding=UTF-8&quot;;</span><br><span class="line">    private static String username = &quot;root&quot;;</span><br><span class="line">    private static String password = &quot;123456&quot;;</span><br><span class="line"></span><br><span class="line">    private static Connection conn;</span><br><span class="line">    private static PreparedStatement ps;</span><br><span class="line">    private static ResultSet rs;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            conn = DriverManager.getConnection(url, username, password);</span><br><span class="line">            ps = conn.prepareStatement(&quot;SELECT bnk_resp_co FROM be_resp WHERE bnk_no = &apos;605&apos;&quot;);</span><br><span class="line">            rs = ps.executeQuery();</span><br><span class="line">            while (rs.next()) &#123;</span><br><span class="line">                String bnkRespCo = rs.getString(&quot;bnk_resp_co&quot;);</span><br><span class="line">                System.out.println(bnkRespCo);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (rs != null) &#123;</span><br><span class="line">                    rs.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (ps != null) &#123;</span><br><span class="line">                    ps.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (conn != null) &#123;</span><br><span class="line">                    conn.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1157,7 +1152,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

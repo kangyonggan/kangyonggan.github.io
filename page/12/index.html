@@ -1056,7 +1056,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/使用SSH内网穿透加Nginx反向代理之后获取真实IP/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/JavaCompileExpressionLanguage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -1075,7 +1075,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/使用SSH内网穿透加Nginx反向代理之后获取真实IP/" itemprop="url">使用SSH内网穿透加Nginx反向代理之后获取真实IP</a></h1>
+                <a class="post-title-link" href="/2018/08/06/JavaCompileExpressionLanguage/" itemprop="url">Java Compile Expression Language</a></h1>
         
 
         <div class="post-meta">
@@ -1110,8 +1110,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统运维/" itemprop="url" rel="index">
-                    <span itemprop="name">系统运维</span>
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
                   </a>
                 </span>
 
@@ -1129,8 +1129,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/使用SSH内网穿透加Nginx反向代理之后获取真实IP/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/使用SSH内网穿透加Nginx反向代理之后获取真实IP/" class="cy_cmt_count" data-xid="2018/08/06/使用SSH内网穿透加Nginx反向代理之后获取真实IP/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/JavaCompileExpressionLanguage/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/JavaCompileExpressionLanguage/" class="cy_cmt_count" data-xid="2018/08/06/JavaCompileExpressionLanguage/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1159,15 +1159,13 @@
 
       
         
-          <p><img src="/uploads/nginx-ssh.png" alt="nginx"></p>
-<h2 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">        # First attempt to serve request as file, then</span><br><span class="line">        # as directory, then fall back to displaying a 404.</span><br><span class="line">        # try_files $uri $uri/ =404;</span><br><span class="line">        proxy_pass http://localhost:8080;</span><br><span class="line"></span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/使用SSH内网穿透加Nginx反向代理之后获取真实IP/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.kangyonggan&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jcel&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// treeMaker and names is JCTree&apos;s environment</span><br><span class="line">JCExpressionParser parser = new JCExpressionParser(treeMaker, names);</span><br><span class="line">JCTree.JCExpression expression = parser.parse(</span><br><span class="line">    &quot;Hello $&#123;user.info.name&#125;, welcome use my $&#123;project[0](1).name&#125;, thanks!&quot;);</span><br><span class="line">System.out.println(expression);</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Hello &quot; + user.getInfo().getName() + &quot;, welcome use my &quot; + project[0].get(1).getName();</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -1255,7 +1253,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

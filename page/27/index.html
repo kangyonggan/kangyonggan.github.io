@@ -308,6 +308,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/Ubuntu14-0-4安装及配置系列-dubbo-monitor2-5-3的安装配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方娇子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/25/Ubuntu14-0-4安装及配置系列-dubbo-monitor2-5-3的安装配置/" itemprop="url">Ubuntu14.0.4安装及配置系列-dubbo-monitor2.5.3的安装配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:00:38+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统运维/" itemprop="url" rel="index">
+                    <span itemprop="name">系统运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/03/25/Ubuntu14-0-4安装及配置系列-dubbo-monitor2-5-3的安装配置/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2017/03/25/Ubuntu14-0-4安装及配置系列-dubbo-monitor2-5-3的安装配置/" class="cy_cmt_count" data-xid="2017/03/25/Ubuntu14-0-4安装及配置系列-dubbo-monitor2-5-3的安装配置/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="下载dubbo-monitor2-5-3到本地"><a href="#下载dubbo-monitor2-5-3到本地" class="headerlink" title="下载dubbo-monitor2.5.3到本地"></a>下载<a href="http://download.csdn.net/detail/liweifengwf/7864009" target="_blank" rel="noopener">dubbo-monitor2.5.3</a>到本地</h3><h3 id="上传本地dubbo-monitor到Ubuntu服务器"><a href="#上传本地dubbo-monitor到Ubuntu服务器" class="headerlink" title="上传本地dubbo-monitor到Ubuntu服务器"></a>上传本地dubbo-monitor到Ubuntu服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scp dubbo-monitor-simple-2.5.3-assembly.tar.gz root@121.40.66.176:/root/soft/</span><br></pre></td></tr></table></figure>
+<h3 id="解压dubbo-monitor到指定目录"><a href="#解压dubbo-monitor到指定目录" class="headerlink" title="解压dubbo-monitor到指定目录"></a>解压dubbo-monitor到指定目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf dubbo-monitor-simple-2.5.3-assembly.tar.gz -C /root/install/</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>修改<code>conf/dubbo.properties</code>中<code>dubbo.registry.address</code>的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dubbo.registry.address=zookeeper://121.40.66.176:2181?backup=139.196.28.125:2181</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/25/Ubuntu14-0-4安装及配置系列-dubbo-monitor2-5-3的安装配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/Ubuntu14-0-4安装及配置系列-nexus3-1-0的安装配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -926,161 +1086,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/Ubuntu14-0-4安装及配置系列-git1-9-1的安装配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方娇子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/25/Ubuntu14-0-4安装及配置系列-git1-9-1的安装配置/" itemprop="url">Ubuntu14.0.4安装及配置系列-git1.9.1的安装配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T16:44:52+08:00">
-                2017-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统运维/" itemprop="url" rel="index">
-                    <span itemprop="name">系统运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/03/25/Ubuntu14-0-4安装及配置系列-git1-9-1的安装配置/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2017/03/25/Ubuntu14-0-4安装及配置系列-git1-9-1的安装配置/" class="cy_cmt_count" data-xid="2017/03/25/Ubuntu14-0-4安装及配置系列-git1-9-1的安装配置/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="更新apt-get"><a href="#更新apt-get" class="headerlink" title="更新apt-get"></a>更新apt-get</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># apt-get update</span><br></pre></td></tr></table></figure>
-<h3 id="下载git"><a href="#下载git" class="headerlink" title="下载git"></a>下载git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># apt-get install git</span><br></pre></td></tr></table></figure>
-<h3 id="测试git是否生效"><a href="#测试git是否生效" class="headerlink" title="测试git是否生效"></a>测试git是否生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git --version</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1135,7 +1140,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
