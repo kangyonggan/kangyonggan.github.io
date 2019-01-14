@@ -936,7 +936,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/Java对象的生命周期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -955,7 +955,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/" itemprop="url">使用阿里巴巴开发规范扫描我的博客发现的问题总结</a></h1>
+                <a class="post-title-link" href="/2018/08/06/Java对象的生命周期/" itemprop="url">Java对象的生命周期</a></h1>
         
 
         <div class="post-meta">
@@ -1009,8 +1009,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/" class="cy_cmt_count" data-xid="2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/Java对象的生命周期/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/Java对象的生命周期/" class="cy_cmt_count" data-xid="2018/08/06/Java对象的生命周期/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1039,13 +1039,18 @@
 
       
         
-          <p>一、 在if/else/for/while/do语句中必须使用大括号，即使只有一行代码，避免使用下面的形式（发现1处）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (condition) statements;</span><br></pre></td></tr></table></figure>
-<p>二应该写成下面这样的形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (flag) &#123;</span><br><span class="line">    System.out.println(&quot;hello world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="Java对象的生命周期分为下面七个阶段"><a href="#Java对象的生命周期分为下面七个阶段" class="headerlink" title="Java对象的生命周期分为下面七个阶段"></a>Java对象的生命周期分为下面七个阶段</h2><ol>
+<li>创建阶段（Created）</li>
+<li>应用阶段（In Use）</li>
+<li>不可见阶段（Invisible）</li>
+<li>不可达阶段（Unreachable）</li>
+<li>收集阶段（Collected）</li>
+<li>终结阶段（Finalized）</li>
+<li>对象空间重新分配阶段（De-allocated）</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/Java对象的生命周期/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
