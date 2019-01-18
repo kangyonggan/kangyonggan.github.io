@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（五）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（五）/" itemprop="url">编译时注解从入门到精通（五）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/" itemprop="url">IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（五）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（五）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（五）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/" class="cy_cmt_count" data-xid="2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,12 +411,12 @@
 
       
         
-          <p>本篇文章是以方法元素(element)为主体进行探讨的。为了简化代码，我把方法元素的两个兄弟提前声明出来：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 方法的标识</span><br><span class="line">Symbol.MethodSymbol methodSym = (Symbol.MethodSymbol) element;</span><br><span class="line"></span><br><span class="line">// 类的声明</span><br><span class="line">JCTree.JCMethodDecl methodDecl = (JCTree.JCMethodDecl) trees.getTree(element);</span><br></pre></td></tr></table></figure>
-<h2 id="查询相关"><a href="#查询相关" class="headerlink" title="查询相关"></a>查询相关</h2><h3 id="获取方法名"><a href="#获取方法名" class="headerlink" title="获取方法名"></a>获取方法名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取方法名</span><br><span class="line"> *</span><br><span class="line"> * @return 返回方法名</span><br><span class="line"> */</span><br><span class="line">public String getMethodName() &#123;</span><br><span class="line">    return methodSym.name.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="Upsource的安装"><a href="#Upsource的安装" class="headerlink" title="Upsource的安装"></a>Upsource的安装</h2><h3 id="解压到指定目录"><a href="#解压到指定目录" class="headerlink" title="解压到指定目录"></a>解压到指定目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip soft/upsource-2017.3.2888.zip -d install/</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh install/upsource-2017.3.2888/bin/upsource.sh start</span><br></pre></td></tr></table></figure>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh install/upsource-2017.3.2888/bin/upsource.sh stop</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（五）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(二)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -467,7 +467,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/CSS3实现加载中的动画效果/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud02-Eureka/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -486,7 +486,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/CSS3实现加载中的动画效果/" itemprop="url">CSS3实现加载中的动画效果</a></h1>
+                <a class="post-title-link" href="/2018/08/06/学习SpringCloud02-Eureka/" itemprop="url">学习SpringCloud02-Eureka</a></h1>
         
 
         <div class="post-meta">
@@ -521,8 +521,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web前端/" itemprop="url" rel="index">
-                    <span itemprop="name">Web前端</span>
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
                   </a>
                 </span>
 
@@ -540,8 +540,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/CSS3实现加载中的动画效果/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/CSS3实现加载中的动画效果/" class="cy_cmt_count" data-xid="2018/08/06/CSS3实现加载中的动画效果/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/学习SpringCloud02-Eureka/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud02-Eureka/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud02-Eureka/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -570,12 +570,17 @@
 
       
         
-          <h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>主要使用transform的rotate属性，将线条组合成Loading图形 (也就是菊花图形)。</p>
-<p>animation实现将线条颜色由浅到深，再由深到浅来回变换的动画，通过animation-delay属性来使颜色的变换产生过渡的效果，从而达到类似于Loading动画的效果。</p>
-<h3 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;loading&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;line1&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line2&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line3&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line4&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line5&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line6&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line7&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;line8&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://blog.csdn.net/forezp/article/details/70148833/" target="_blank" rel="noopener">https://blog.csdn.net/forezp/article/details/70148833/</a></p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>搭建一个集群，包括服务注册、服务发现和负载均衡等。</p>
+<h2 id="大致步骤"><a href="#大致步骤" class="headerlink" title="大致步骤"></a>大致步骤</h2><ol>
+<li>创建一个注册中心<code>eureka-server</code></li>
+<li>创建两个服务提供者<code>eureka-provider1</code>、<code>eureka-provider2</code></li>
+<li>创建一个服务消费者<code>eureka-consumer</code></li>
+</ol>
+<h2 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h2><p>创建一个maven项目<code>eureka-server</code>。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/CSS3实现加载中的动画效果/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/学习SpringCloud02-Eureka/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -792,7 +797,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（四）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/量化分析HashMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -811,7 +816,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（四）/" itemprop="url">编译时注解从入门到精通（四）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/量化分析HashMap/" itemprop="url">量化分析HashMap</a></h1>
         
 
         <div class="post-meta">
@@ -865,8 +870,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（四）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（四）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（四）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/量化分析HashMap/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/量化分析HashMap/" class="cy_cmt_count" data-xid="2018/08/06/量化分析HashMap/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -895,12 +900,11 @@
 
       
         
-          <p>本篇文章是以类元素(element)为主体进行探讨的。为了简化代码，我把类元素的两个兄弟提前声明出来：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 类的标识</span><br><span class="line">Symbol.ClassSymbol classSym = (Symbol.ClassSymbol) element;</span><br><span class="line"></span><br><span class="line">// 类的声明</span><br><span class="line">JCTree.JCClassDecl classDecl = (JCTree.JCClassDecl) trees.getTree(element);</span><br></pre></td></tr></table></figure>
-<h2 id="查询相关"><a href="#查询相关" class="headerlink" title="查询相关"></a>查询相关</h2><h3 id="获取类的全路径"><a href="#获取类的全路径" class="headerlink" title="获取类的全路径"></a>获取类的全路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取类的全路径</span><br><span class="line"> *</span><br><span class="line"> * @return 返回类的全路径</span><br><span class="line"> */</span><br><span class="line">public String getFullName() &#123;</span><br><span class="line">    return classSym.fullname.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="HashMap的数据结构"><a href="#HashMap的数据结构" class="headerlink" title="HashMap的数据结构"></a>HashMap的数据结构</h2><p>HashMap是由<code>数组</code>和<code>链表</code>构成的，如下图：</p>
+<p><img src="/uploads/hashmap.png" alt="HashMap"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（四）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/量化分析HashMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -951,7 +955,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/配置dubbo多注册中心/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -970,7 +974,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/配置dubbo多注册中心/" itemprop="url">配置dubbo多注册中心</a></h1>
         
 
         <div class="post-meta">
@@ -1024,8 +1028,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/编译时注解从入门到精通（二）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（二）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（二）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/配置dubbo多注册中心/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/配置dubbo多注册中心/" class="cy_cmt_count" data-xid="2018/08/06/配置dubbo多注册中心/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1054,20 +1058,11 @@
 
       
         
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>上一篇文章的最后有一个@Serial的注解，现在我捋一捋此注解实现的思路。  </p>
-<ol>
-<li>一个项目中有很多很多的类，我们要找出带有@Serial注解的类。然后遍历这些类，对其逐个处理。</li>
-<li>我们给这个类实现Serializable接口(如果没实现)，同时也要把对应的包导入进来。</li>
-<li>生成一个不重复的long型的值，并赋值给一个叫做serialVersionUID的long型遍历。</li>
-<li>最后把serialVersionUID加入到类的变量中（如果不存在）。</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（二）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>参考dubbo官方文档<a href="http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E5%A4%9A%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener">http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E5%A4%9A%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83</a></p>
+<h2 id="consumer-xml"><a href="#consumer-xml" class="headerlink" title="consumer.xml"></a>consumer.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd</span><br><span class="line">       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span><br><span class="line">       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;context:annotation-config&gt;&lt;/context:annotation&gt;</span><br><span class="line">    &lt;dubbo:application name=&quot;ENGINE_HELPER&quot;&gt;&lt;/dubbo:application&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dubbo:registry id=&quot;dev_address&quot; address=&quot;zookeeper://10.199.101.211:8080?backup=10.199.101.212:2181,10.199.101.213:2181&quot;&gt;&lt;/dubbo:registry&gt;</span><br><span class="line">    &lt;dubbo:registry id=&quot;uat_address&quot; address=&quot;zookeeper://10.199.105.204:2181?backup=10.199.105.203:2181,10.199.105.202:2181&quot; default=&quot;false&quot;&gt;&lt;/dubbo:registry&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dubbo:reference id=&quot;bankEngineServiceDev&quot; cluster=&quot;failfast&quot;</span><br><span class="line">                     interface=&quot;com.shhxzq.fin.bankengine.service.BankEngineService&quot;</span><br><span class="line">                     lazy=&quot;true&quot; version=&quot;1.2.0&quot; check=&quot;false&quot; timeout=&quot;100000&quot; registry=&quot;dev_address&quot;&gt;&lt;/dubbo:reference&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dubbo:reference id=&quot;bankEngineServiceUat&quot; cluster=&quot;failfast&quot;</span><br><span class="line">                     interface=&quot;com.shhxzq.fin.bankengine.service.BankEngineService&quot;</span><br><span class="line">                     lazy=&quot;true&quot; version=&quot;1.2.0&quot; check=&quot;false&quot; timeout=&quot;100000&quot; registry=&quot;uat_address&quot;&gt;&lt;/dubbo:reference&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -1105,7 +1100,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1155,7 +1150,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-count">141</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

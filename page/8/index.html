@@ -308,6 +308,487 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（三）/" itemprop="url">学习Activiti 6.0.0 （三）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/编译时注解从入门到精通（三）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（三）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（三）/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="如何debug？"><a href="#如何debug？" class="headerlink" title="如何debug？"></a>如何debug？</h2><p>对于debug应该都会熟悉，但是如果让你在<code>mvn clean install</code>的过程中debug，你还会吗？会的请跳过，不会的向下看。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- jca</span><br><span class="line">    - jca-core</span><br><span class="line">        - src</span><br><span class="line">            - main</span><br><span class="line">                - java</span><br><span class="line">                    - com.github.ofofs.jca.processor</span><br><span class="line">                        - JcaProcessor.java</span><br><span class="line">                - resources</span><br><span class="line">                    - META-INF</span><br><span class="line">                        - services</span><br><span class="line">                            - javax.annotation.processing.Processor</span><br><span class="line">        - pom.xml</span><br><span class="line">    - jca-test</span><br><span class="line">        - src</span><br><span class="line">            - main</span><br><span class="line">                - java</span><br><span class="line">                    - com.github.ofofs.jca.serial</span><br><span class="line">                        - SerialTest.java</span><br><span class="line">        - pom.xml</span><br><span class="line">    - pom.xml</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（三）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（一）/" itemprop="url">编译时注解从入门到精通（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/编译时注解从入门到精通（一）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（一）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（一）/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>编译时注解是一种只在编译期间生效的注解。比如常见的<code>@Override</code>。<br>@Override的定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">@Retention(RetentionPolicy.SOURCE)</span><br><span class="line">public @interface Override &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>@Target(ElementType.METHOD) 表示此注解只能用在方法上。</li>
+<li>@Retention(RetentionPolicy.SOURCE) 表示此注解只存在于源码中。</li>
+</ul>
+<blockquote>
+<p>@Retention(RetentionPolicy.RUNTIME) 表示这是一个运行时注解</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/根据正则表达式生成字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/根据正则表达式生成字符串/" itemprop="url">根据正则表达式生成字符串</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/根据正则表达式生成字符串/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/根据正则表达式生成字符串/" class="cy_cmt_count" data-xid="2018/08/06/根据正则表达式生成字符串/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="reggen"><a href="#reggen" class="headerlink" title="reggen"></a>reggen</h2><p>reggen是一个正则表达式生成器。可以根据指定的正则表达式随机生成符合正则表达式的字符串。目前有部分特殊字符无法生成，比如：\r、\n等。</p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.github.ofofs&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;reggen&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;reggen.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>可以到<a href="http://mvnrepository.com/search?q=reggen" target="_blank" rel="noopener">http://mvnrepository.com/search?q=reggen</a>查看最新版本。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/根据正则表达式生成字符串/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/持续集成工具TeamCity的安装和使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -467,7 +948,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/利用编译时注解增强方法/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/把网站从http免费升级到https/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -486,7 +967,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/利用编译时注解增强方法/" itemprop="url">利用编译时注解增强方法</a></h1>
+                <a class="post-title-link" href="/2018/08/06/把网站从http免费升级到https/" itemprop="url">把网站从http免费升级到https</a></h1>
         
 
         <div class="post-meta">
@@ -521,8 +1002,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
+                  <a href="/categories/综合/" itemprop="url" rel="index">
+                    <span itemprop="name">综合</span>
                   </a>
                 </span>
 
@@ -540,8 +1021,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/利用编译时注解增强方法/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/利用编译时注解增强方法/" class="cy_cmt_count" data-xid="2018/08/06/利用编译时注解增强方法/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/把网站从http免费升级到https/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/把网站从http免费升级到https/" class="cy_cmt_count" data-xid="2018/08/06/把网站从http免费升级到https/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -570,499 +1051,12 @@
 
       
         
-          <h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><ol>
-<li>在任何一个方法上加上注解，都要能打印出参、入参信息，而不局限于spring管理的类方法。</li>
-<li>不要每次调用方法都要经过各种反射，而是编译时就把增强代码注入到方法第一行。这样性能更好。</li>
-<li>可以自定义使用什么日志框架输出日志。</li>
-</ol>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
-<li>开发工具：idea或eclipse</li>
-<li>项目管理工具：maven3.3.9</li>
-<li>jdk版本：1.8.0_144</li>
-</ul>
+          <h2 id="申请免费SSL"><a href="#申请免费SSL" class="headerlink" title="申请免费SSL"></a>申请免费SSL</h2><p>打开<a href="https://zerossl.com/" target="_blank" rel="noopener">https://zerossl.com/</a>, 点击【ONLINE TOOLS】</p>
+<p><img src="/uploads/https01.png" alt="https"></p>
+<p>点击【START】开始申请证书</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/利用编译时注解增强方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud06-Eureka-高可用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/学习SpringCloud06-Eureka-高可用/" itemprop="url">学习SpringCloud06-Eureka-高可用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/学习SpringCloud06-Eureka-高可用/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud06-Eureka-高可用/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud06-Eureka-高可用/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://blog.csdn.net/sosfnima/article/details/53178305" target="_blank" rel="noopener">https://blog.csdn.net/sosfnima/article/details/53178305</a></p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>服务注册中心的高可用，其实就是冗余一个注册中心，当其中一个注册中心挂了的时候另外一个还可以继续使用，这就是注册中心的高可用。</p>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>启动两个服务注册中心，并注册一个服务，此时两个注册中心都有此服务，kill掉其中一个注册中心，另外一个注册中心还能继续使用。</p>
-<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>这篇文章的实验环境是基于《学习SpringCloud03-Eureka》中的几个项目的。</p>
-<h2 id="改造eureka-server"><a href="#改造eureka-server" class="headerlink" title="改造eureka-server"></a>改造eureka-server</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p>添加多环境的配置，当环境是1时，启动注册中心1，当环境是2时启动注册中心2。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习SpringCloud06-Eureka-高可用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" itemprop="url">学习SpringCloud07-使用docker部署SpringCloud项目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
-<li><a href="https://blog.csdn.net/forezp/article/details/70198649" target="_blank" rel="noopener">https://blog.csdn.net/forezp/article/details/70198649</a></li>
-<li><a href="http://www.runoob.com/docker/docker-hello-world.html" target="_blank" rel="noopener">http://www.runoob.com/docker/docker-hello-world.html</a></li>
-<li><a href="https://blog.csdn.net/lvyuan1234/article/details/69255944" target="_blank" rel="noopener">https://blog.csdn.net/lvyuan1234/article/details/69255944</a></li>
-</ul>
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>各平台docker下载地址：<a href="http://get.daocloud.io/" target="_blank" rel="noopener">http://get.daocloud.io/</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （四）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/学习Activiti 6.0.0 （四）/" itemprop="url">学习Activiti 6.0.0 （四）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/学习Activiti 6.0.0 （四）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （四）/" class="cy_cmt_count" data-xid="2018/08/06/学习Activiti 6.0.0 （四）/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="挂起-amp-激活"><a href="#挂起-amp-激活" class="headerlink" title="挂起 &amp; 激活"></a>挂起 &amp; 激活</h2><p>当一个流程定义被挂起后，如果再去尝试启动一个流程，那么就会抛一个异常<code>ActivitiException</code>, 测试代码如下：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习Activiti 6.0.0 （四）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/把网站从http免费升级到https/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1104,7 +1098,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1154,7 +1148,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-count">141</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
