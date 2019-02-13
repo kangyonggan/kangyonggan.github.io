@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud01-HelloWorld/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" itemprop="url">IntelliJ IDEA自动生成setter方法丢失is</a></h1>
+                <a class="post-title-link" href="/2018/08/06/学习SpringCloud01-HelloWorld/" itemprop="url">学习SpringCloud01-HelloWorld</a></h1>
         
 
         <div class="post-meta">
@@ -362,8 +362,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/综合/" itemprop="url" rel="index">
-                    <span itemprop="name">综合</span>
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
                   </a>
                 </span>
 
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" class="cy_cmt_count" data-xid="2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/学习SpringCloud01-HelloWorld/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud01-HelloWorld/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud01-HelloWorld/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,13 +411,11 @@
 
       
         
-          <h3 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h3><p>有一个实体类Demo，他有一个boolean类型的属性isUpdate。</p>
-<h3 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h3><p>如果使用idea自动生成setter方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void setUpdate(boolean update) &#123;</span><br><span class="line">    isUpdate = update;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="前端请求"><a href="#前端请求" class="headerlink" title="前端请求"></a>前端请求</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.post(&quot;xxxxx/update&quot;, &#123;</span><br><span class="line">    isUpdate: true</span><br><span class="line">&#125;, function(data,status)&#123;</span><br><span class="line">    alert(&quot;数据: \n&quot; + data + &quot;\n状态: &quot; + status);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://springcloud.cc/spring-cloud-dalston.html" target="_blank" rel="noopener">https://springcloud.cc/spring-cloud-dalston.html</a><br><a href="http://projects.spring.io/spring-cloud/#quick-start" target="_blank" rel="noopener">http://projects.spring.io/spring-cloud/#quick-start</a></p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/学习SpringCloud01-HelloWorld/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1162,7 +1160,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">142</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
