@@ -571,7 +571,7 @@
         
           
             <h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh: 81: /home/kyg/install/server1/zookeeper-3.4.9/bin/zkEnv.sh: Syntax error: &quot;(&quot; unexpected (expecting &quot;fi&quot;)</span><br></pre></td></tr></table></figure>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -l /bin/sh</span><br><span class="line">lrwxrwxrwx 1 root root 4 12月 24 17:22 /bin/sh -&gt; dash</span><br><span class="line">ls -l /bin/sh</span><br><span class="line">lrwxrwxrwx 1 root root 4 12月 24 20:01 /bin/sh -&gt; bash</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls -l /bin/sh</span><br><span class="line">lrwxrwxrwx 1 root root 4 12月 24 17:22 /bin/sh -&gt; dash</span><br><span class="line">ln -sf bash /bin/sh</span><br><span class="line">ls -l /bin/sh</span><br><span class="line">lrwxrwxrwx 1 root root 4 12月 24 20:01 /bin/sh -&gt; bash</span><br></pre></td></tr></table></figure>
           
         
       
