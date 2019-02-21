@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" itemprop="url">IntelliJ IDEA自动生成setter方法丢失is</a></h1>
+                <a class="post-title-link" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="url">IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)</a></h1>
         
 
         <div class="post-meta">
@@ -362,8 +362,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/综合/" itemprop="url" rel="index">
-                    <span itemprop="name">综合</span>
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
                   </a>
                 </span>
 
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" class="cy_cmt_count" data-xid="2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" class="cy_cmt_count" data-xid="2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,13 +411,19 @@
 
       
         
-          <h3 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h3><p>有一个实体类Demo，他有一个boolean类型的属性isUpdate。</p>
-<h3 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h3><p>如果使用idea自动生成setter方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void setUpdate(boolean update) &#123;</span><br><span class="line">    isUpdate = update;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="前端请求"><a href="#前端请求" class="headerlink" title="前端请求"></a>前端请求</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.post(&quot;xxxxx/update&quot;, &#123;</span><br><span class="line">    isUpdate: true</span><br><span class="line">&#125;, function(data,status)&#123;</span><br><span class="line">    alert(&quot;数据: \n&quot; + data + &quot;\n状态: &quot; + status);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul>
+<li>IntelliJ IDEA下载地址：<a href="https://www.jetbrains.com/idea/download" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download</a></li>
+<li>TeamCity下载地址：<a href="https://www.jetbrains.com/teamcity/download" target="_blank" rel="noopener">https://www.jetbrains.com/teamcity/download</a></li>
+<li>Upsource下载地址：<a href="https://www.jetbrains.com/upsource/download" target="_blank" rel="noopener">https://www.jetbrains.com/upsource/download</a></li>
+<li>TeamCity Plugin：<a href="https://plugins.jetbrains.com/plugin/1820-teamcity-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/1820-teamcity-integration</a></li>
+<li>Upsource Pligin：<a href="https://plugins.jetbrains.com/plugin/7431-upsource-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/7431-upsource-integration</a></li>
+<li>阿里巴巴代码质量检测插件：<a href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines</a></li>
+</ul>
+<p>后面三个是idea插件，如果电脑能联网，可以在插件中搜索到直接安装，如果是公司内网，可以下载离线安装包，然后手动安装idea插件。</p>
+<p>安装IDEA插件方法：<code>Preferences &gt; Plugins &gt; Install plugin from disk...</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/IntelliJ IDEA自动生成setter方法丢失is/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1145,7 +1151,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">144</span>
+                  <span class="site-state-item-count">145</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
