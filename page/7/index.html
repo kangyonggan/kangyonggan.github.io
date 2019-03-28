@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/利用编译时注解增强方法/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/利用编译时注解增强方法/" itemprop="url">利用编译时注解增强方法</a></h1>
+                <a class="post-title-link" href="/2018/08/06/学习Activiti 6.0.0 （四）/" itemprop="url">学习Activiti 6.0.0 （四）</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/利用编译时注解增强方法/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/利用编译时注解增强方法/" class="cy_cmt_count" data-xid="2018/08/06/利用编译时注解增强方法/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/学习Activiti 6.0.0 （四）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （四）/" class="cy_cmt_count" data-xid="2018/08/06/学习Activiti 6.0.0 （四）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,19 +411,10 @@
 
       
         
-          <h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><ol>
-<li>在任何一个方法上加上注解，都要能打印出参、入参信息，而不局限于spring管理的类方法。</li>
-<li>不要每次调用方法都要经过各种反射，而是编译时就把增强代码注入到方法第一行。这样性能更好。</li>
-<li>可以自定义使用什么日志框架输出日志。</li>
-</ol>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
-<li>开发工具：idea或eclipse</li>
-<li>项目管理工具：maven3.3.9</li>
-<li>jdk版本：1.8.0_144</li>
-</ul>
+          <h2 id="挂起-amp-激活"><a href="#挂起-amp-激活" class="headerlink" title="挂起 &amp; 激活"></a>挂起 &amp; 激活</h2><p>当一个流程定义被挂起后，如果再去尝试启动一个流程，那么就会抛一个异常<code>ActivitiException</code>, 测试代码如下：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/利用编译时注解增强方法/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/学习Activiti 6.0.0 （四）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -584,171 +575,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Hello &quot; + user.getInfo().getName() + &quot;, welcome use my &quot; + project[0].get(1).getName();</span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/Java对象的生命周期/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/Java对象的生命周期/" itemprop="url">Java对象的生命周期</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/Java对象的生命周期/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/Java对象的生命周期/" class="cy_cmt_count" data-xid="2018/08/06/Java对象的生命周期/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Java对象的生命周期分为下面七个阶段"><a href="#Java对象的生命周期分为下面七个阶段" class="headerlink" title="Java对象的生命周期分为下面七个阶段"></a>Java对象的生命周期分为下面七个阶段</h2><ol>
-<li>创建阶段（Created）</li>
-<li>应用阶段（In Use）</li>
-<li>不可见阶段（Invisible）</li>
-<li>不可达阶段（Unreachable）</li>
-<li>收集阶段（Collected）</li>
-<li>终结阶段（Finalized）</li>
-<li>对象空间重新分配阶段（De-allocated）</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/Java对象的生命周期/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -961,7 +787,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/量化分析HashMap/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -980,7 +806,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/量化分析HashMap/" itemprop="url">量化分析HashMap</a></h1>
+                <a class="post-title-link" href="/2018/08/06/学习Activiti 6.0.0 （二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
         
 
         <div class="post-meta">
@@ -1034,8 +860,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/量化分析HashMap/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/量化分析HashMap/" class="cy_cmt_count" data-xid="2018/08/06/量化分析HashMap/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/学习Activiti 6.0.0 （二）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （二）/" class="cy_cmt_count" data-xid="2018/08/06/学习Activiti 6.0.0 （二）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1064,11 +890,176 @@
 
       
         
-          <h2 id="HashMap的数据结构"><a href="#HashMap的数据结构" class="headerlink" title="HashMap的数据结构"></a>HashMap的数据结构</h2><p>HashMap是由<code>数组</code>和<code>链表</code>构成的，如下图：</p>
-<p><img src="/uploads/hashmap.png" alt="HashMap"></p>
+          <blockquote>
+<p>本例代码：<a href="https://github.com/kangyonggan/acti-01.git" target="_blank" rel="noopener">https://github.com/kangyonggan/acti-01.git</a></p>
+</blockquote>
+<h2 id="一、创建一个流程引擎ProcessEngine"><a href="#一、创建一个流程引擎ProcessEngine" class="headerlink" title="一、创建一个流程引擎ProcessEngine"></a>一、创建一个流程引擎<code>ProcessEngine</code></h2><h3 id="1-1-添加Maven依赖"><a href="#1-1-添加Maven依赖" class="headerlink" title="1.1 添加Maven依赖"></a>1.1 添加Maven依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;activiti.version&gt;6.0.0&lt;/activiti.version&gt;</span><br><span class="line">&lt;mysql.version&gt;5.1.34&lt;/mysql.version&gt;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;!--activiti--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-engine&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--mysql--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;mysql.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/量化分析HashMap/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/学习Activiti 6.0.0 （二）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/在mac上发布jar包到中央仓库/" itemprop="url">在mac上发布jar包到中央仓库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/综合/" itemprop="url" rel="index">
+                    <span itemprop="name">综合</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/在mac上发布jar包到中央仓库/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/" class="cy_cmt_count" data-xid="2018/08/06/在mac上发布jar包到中央仓库/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="注册sonatype账号"><a href="#注册sonatype账号" class="headerlink" title="注册sonatype账号"></a>注册sonatype账号</h3><p>地址：<a href="https://issues.sonatype.org/secure/Signup!default.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Signup!default.jspa</a></p>
+<blockquote>
+<ul>
+<li>记住用户名和密码，后面会频繁使用。</li>
+</ul>
+</blockquote>
+<h3 id="创建一个issue"><a href="#创建一个issue" class="headerlink" title="创建一个issue"></a>创建一个issue</h3><p>地址：<a href="https://issues.sonatype.org/secure/Dashboard.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a><br>使用上面注册的用户名和密码登录。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/在mac上发布jar包到中央仓库/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
