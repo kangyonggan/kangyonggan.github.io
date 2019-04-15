@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/利用编译时注解增强方法/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/利用编译时注解增强方法/" itemprop="url">利用编译时注解增强方法</a></h1>
+                <a class="post-title-link" href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" itemprop="url">SpringMVC结合拦截器、注解实现简单的防重复提交</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/利用编译时注解增强方法/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/利用编译时注解增强方法/" class="cy_cmt_count" data-xid="2018/08/06/利用编译时注解增强方法/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" class="cy_cmt_count" data-xid="2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,179 +411,19 @@
 
       
         
-          <h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><ol>
-<li>在任何一个方法上加上注解，都要能打印出参、入参信息，而不局限于spring管理的类方法。</li>
-<li>不要每次调用方法都要经过各种反射，而是编译时就把增强代码注入到方法第一行。这样性能更好。</li>
-<li>可以自定义使用什么日志框架输出日志。</li>
+          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>在请求一个表单页面时，服务端生成一个随机的token，把token放入session中并回传到前端页面。</li>
+<li>前端表单把token作为一个隐藏域提交给服务端。</li>
+<li>服务端校验提交的token和session中的token是否一致来判断是否是重复提交，然后清除session中的token。</li>
 </ol>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
-<li>开发工具：idea或eclipse</li>
-<li>项目管理工具：maven3.3.9</li>
-<li>jdk版本：1.8.0_144</li>
-</ul>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><ol>
+<li>服务端：在请求一个表单页面的controller的方法上加上注解@Token，即可生成token，放入session并回传到前端。</li>
+<li>客户端：我使用的是freemarker，想使用宏定义来封装一下表单组件，如果这个表单需要做防重复提交，只需要传入token=true即可，它会自动加入一个隐藏域，其值为服务端回传的token。</li>
+<li>服务端：如果表单提交的controller的方法上有注解@Token(type = Token.Type.CHECK),那么就校验session中的token和提交的token是否一致，从而判断是否是重复提交。</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/利用编译时注解增强方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/" itemprop="url">使用阿里巴巴开发规范扫描我的博客发现的问题总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/" class="cy_cmt_count" data-xid="2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>一、 在if/else/for/while/do语句中必须使用大括号，即使只有一行代码，避免使用下面的形式（发现1处）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (condition) statements;</span><br></pre></td></tr></table></figure>
-<p>二应该写成下面这样的形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (flag) &#123;</span><br><span class="line">    System.out.println(&quot;hello world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/使用阿里巴巴开发规范扫描我的博客发现的问题总结/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -791,6 +631,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/让百度分享支持https的网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/让百度分享支持https的网站/" itemprop="url">让百度分享支持https的网站</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/让百度分享支持https的网站/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/让百度分享支持https的网站/" class="cy_cmt_count" data-xid="2018/08/06/让百度分享支持https的网站/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="百度分享"><a href="#百度分享" class="headerlink" title="百度分享"></a>百度分享</h3><p>百度分享地址：<a href="http://share.baidu.com" target="_blank" rel="noopener">http://share.baidu.com</a><br>由于我的网站的https的，而百度分享代码中是http的，所以不能按照百度分享提供的代码直接使用。<br>我的做法是将百度分享所使用的js、css、image全部下载下来，放在我自己的服务器。</p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="/uploads/baidu-share.zip">baidu-share.zip</a></p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>下面的代码是使用百度分享自动生成的，首先是把zip文件解压到服务器根目录下，然后需要把域名改为自己域名的就ok了。<br>比如我是将“<a href="http://bdimg.share.baidu.com/static/api/js/share.js”改为“${ctx}/static/api/js/share.js”" target="_blank" rel="noopener">http://bdimg.share.baidu.com/static/api/js/share.js”改为“${ctx}/static/api/js/share.js”</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/让百度分享支持https的网站/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/使用Log4j2的Rewrite过滤敏感信息/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -948,7 +947,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （二）/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -967,7 +966,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/学习Activiti 6.0.0 （二）/" itemprop="url">学习Activiti 6.0.0 （二）</a></h1>
+                <a class="post-title-link" href="/2018/08/06/编译时注解从入门到精通（四）/" itemprop="url">编译时注解从入门到精通（四）</a></h1>
         
 
         <div class="post-meta">
@@ -1021,8 +1020,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/学习Activiti 6.0.0 （二）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （二）/" class="cy_cmt_count" data-xid="2018/08/06/学习Activiti 6.0.0 （二）/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/编译时注解从入门到精通（四）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/编译时注解从入门到精通（四）/" class="cy_cmt_count" data-xid="2018/08/06/编译时注解从入门到精通（四）/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -1051,13 +1050,12 @@
 
       
         
-          <blockquote>
-<p>本例代码：<a href="https://github.com/kangyonggan/acti-01.git" target="_blank" rel="noopener">https://github.com/kangyonggan/acti-01.git</a></p>
-</blockquote>
-<h2 id="一、创建一个流程引擎ProcessEngine"><a href="#一、创建一个流程引擎ProcessEngine" class="headerlink" title="一、创建一个流程引擎ProcessEngine"></a>一、创建一个流程引擎<code>ProcessEngine</code></h2><h3 id="1-1-添加Maven依赖"><a href="#1-1-添加Maven依赖" class="headerlink" title="1.1 添加Maven依赖"></a>1.1 添加Maven依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;activiti.version&gt;6.0.0&lt;/activiti.version&gt;</span><br><span class="line">&lt;mysql.version&gt;5.1.34&lt;/mysql.version&gt;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;!--activiti--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-engine&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--mysql--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;mysql.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+          <p>本篇文章是以类元素(element)为主体进行探讨的。为了简化代码，我把类元素的两个兄弟提前声明出来：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 类的标识</span><br><span class="line">Symbol.ClassSymbol classSym = (Symbol.ClassSymbol) element;</span><br><span class="line"></span><br><span class="line">// 类的声明</span><br><span class="line">JCTree.JCClassDecl classDecl = (JCTree.JCClassDecl) trees.getTree(element);</span><br></pre></td></tr></table></figure>
+<h2 id="查询相关"><a href="#查询相关" class="headerlink" title="查询相关"></a>查询相关</h2><h3 id="获取类的全路径"><a href="#获取类的全路径" class="headerlink" title="获取类的全路径"></a>获取类的全路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取类的全路径</span><br><span class="line"> *</span><br><span class="line"> * @return 返回类的全路径</span><br><span class="line"> */</span><br><span class="line">public String getFullName() &#123;</span><br><span class="line">    return classSym.fullname.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习Activiti 6.0.0 （二）/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/编译时注解从入门到精通（四）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1099,7 +1097,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1149,7 +1147,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
