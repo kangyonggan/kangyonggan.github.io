@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/JDBC连接MySQL数据库的代码片段/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="url">IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)</a></h1>
+                <a class="post-title-link" href="/2018/08/06/JDBC连接MySQL数据库的代码片段/" itemprop="url">JDBC连接MySQL数据库的代码片段</a></h1>
         
 
         <div class="post-meta">
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" class="cy_cmt_count" data-xid="2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/JDBC连接MySQL数据库的代码片段/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/JDBC连接MySQL数据库的代码片段/" class="cy_cmt_count" data-xid="2018/08/06/JDBC连接MySQL数据库的代码片段/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,19 +411,168 @@
 
       
         
-          <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul>
-<li>IntelliJ IDEA下载地址：<a href="https://www.jetbrains.com/idea/download" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download</a></li>
-<li>TeamCity下载地址：<a href="https://www.jetbrains.com/teamcity/download" target="_blank" rel="noopener">https://www.jetbrains.com/teamcity/download</a></li>
-<li>Upsource下载地址：<a href="https://www.jetbrains.com/upsource/download" target="_blank" rel="noopener">https://www.jetbrains.com/upsource/download</a></li>
-<li>TeamCity Plugin：<a href="https://plugins.jetbrains.com/plugin/1820-teamcity-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/1820-teamcity-integration</a></li>
-<li>Upsource Pligin：<a href="https://plugins.jetbrains.com/plugin/7431-upsource-integration" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/7431-upsource-integration</a></li>
-<li>阿里巴巴代码质量检测插件：<a href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines" target="_blank" rel="noopener">https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines</a></li>
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @since 4/25/17</span><br><span class="line"> */</span><br><span class="line">public class ExcelParse605 &#123;</span><br><span class="line"></span><br><span class="line">    private static String url = &quot;jdbc:mysql://127.0.0.1:3306/dfjz?useUnicode=true&amp;characterEncoding=UTF-8&quot;;</span><br><span class="line">    private static String username = &quot;root&quot;;</span><br><span class="line">    private static String password = &quot;123456&quot;;</span><br><span class="line"></span><br><span class="line">    private static Connection conn;</span><br><span class="line">    private static PreparedStatement ps;</span><br><span class="line">    private static ResultSet rs;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            conn = DriverManager.getConnection(url, username, password);</span><br><span class="line">            ps = conn.prepareStatement(&quot;SELECT bnk_resp_co FROM be_resp WHERE bnk_no = &apos;605&apos;&quot;);</span><br><span class="line">            rs = ps.executeQuery();</span><br><span class="line">            while (rs.next()) &#123;</span><br><span class="line">                String bnkRespCo = rs.getString(&quot;bnk_resp_co&quot;);</span><br><span class="line">                System.out.println(bnkRespCo);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (rs != null) &#123;</span><br><span class="line">                    rs.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (ps != null) &#123;</span><br><span class="line">                    ps.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (conn != null) &#123;</span><br><span class="line">                    conn.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/在mac上发布jar包到中央仓库/" itemprop="url">在mac上发布jar包到中央仓库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/综合/" itemprop="url" rel="index">
+                    <span itemprop="name">综合</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/08/06/在mac上发布jar包到中央仓库/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/在mac上发布jar包到中央仓库/" class="cy_cmt_count" data-xid="2018/08/06/在mac上发布jar包到中央仓库/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="注册sonatype账号"><a href="#注册sonatype账号" class="headerlink" title="注册sonatype账号"></a>注册sonatype账号</h3><p>地址：<a href="https://issues.sonatype.org/secure/Signup!default.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Signup!default.jspa</a></p>
+<blockquote>
+<ul>
+<li>记住用户名和密码，后面会频繁使用。</li>
 </ul>
-<p>后面三个是idea插件，如果电脑能联网，可以在插件中搜索到直接安装，如果是公司内网，可以下载离线安装包，然后手动安装idea插件。</p>
-<p>安装IDEA插件方法：<code>Preferences &gt; Plugins &gt; Install plugin from disk...</code></p>
+</blockquote>
+<h3 id="创建一个issue"><a href="#创建一个issue" class="headerlink" title="创建一个issue"></a>创建一个issue</h3><p>地址：<a href="https://issues.sonatype.org/secure/Dashboard.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a><br>使用上面注册的用户名和密码登录。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/IntelliJ IDEA集开发、持续集成、代码质量检测和代码审核于一体(一)/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/在mac上发布jar包到中央仓库/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -474,7 +623,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/配置dubbo多注册中心/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -493,7 +642,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/配置dubbo多注册中心/" itemprop="url">配置dubbo多注册中心</a></h1>
+                <a class="post-title-link" href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" itemprop="url">学习SpringCloud07-使用docker部署SpringCloud项目</a></h1>
         
 
         <div class="post-meta">
@@ -547,8 +696,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/配置dubbo多注册中心/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/配置dubbo多注册中心/" class="cy_cmt_count" data-xid="2018/08/06/配置dubbo多注册中心/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -577,11 +726,19 @@
 
       
         
-          
-            <p>参考dubbo官方文档<a href="http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E5%A4%9A%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener">http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%E5%A4%9A%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83</a></p>
-<h2 id="consumer-xml"><a href="#consumer-xml" class="headerlink" title="consumer.xml"></a>consumer.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd</span><br><span class="line">       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span><br><span class="line">       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;context:annotation-config&gt;&lt;/context:annotation&gt;</span><br><span class="line">    &lt;dubbo:application name=&quot;ENGINE_HELPER&quot;&gt;&lt;/dubbo:application&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dubbo:registry id=&quot;dev_address&quot; address=&quot;zookeeper://10.199.101.211:8080?backup=10.199.101.212:2181,10.199.101.213:2181&quot;&gt;&lt;/dubbo:registry&gt;</span><br><span class="line">    &lt;dubbo:registry id=&quot;uat_address&quot; address=&quot;zookeeper://10.199.105.204:2181?backup=10.199.105.203:2181,10.199.105.202:2181&quot; default=&quot;false&quot;&gt;&lt;/dubbo:registry&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dubbo:reference id=&quot;bankEngineServiceDev&quot; cluster=&quot;failfast&quot;</span><br><span class="line">                     interface=&quot;com.shhxzq.fin.bankengine.service.BankEngineService&quot;</span><br><span class="line">                     lazy=&quot;true&quot; version=&quot;1.2.0&quot; check=&quot;false&quot; timeout=&quot;100000&quot; registry=&quot;dev_address&quot;&gt;&lt;/dubbo:reference&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dubbo:reference id=&quot;bankEngineServiceUat&quot; cluster=&quot;failfast&quot;</span><br><span class="line">                     interface=&quot;com.shhxzq.fin.bankengine.service.BankEngineService&quot;</span><br><span class="line">                     lazy=&quot;true&quot; version=&quot;1.2.0&quot; check=&quot;false&quot; timeout=&quot;100000&quot; registry=&quot;uat_address&quot;&gt;&lt;/dubbo:reference&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
-
-          
+          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
+<li><a href="https://blog.csdn.net/forezp/article/details/70198649" target="_blank" rel="noopener">https://blog.csdn.net/forezp/article/details/70198649</a></li>
+<li><a href="http://www.runoob.com/docker/docker-hello-world.html" target="_blank" rel="noopener">http://www.runoob.com/docker/docker-hello-world.html</a></li>
+<li><a href="https://blog.csdn.net/lvyuan1234/article/details/69255944" target="_blank" rel="noopener">https://blog.csdn.net/lvyuan1234/article/details/69255944</a></li>
+</ul>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>各平台docker下载地址：<a href="http://get.daocloud.io/" target="_blank" rel="noopener">http://get.daocloud.io/</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/06/学习SpringCloud07-使用docker部署SpringCloud项目/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -628,7 +785,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud03-hystrix/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习SpringCloud06-Eureka-高可用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -647,7 +804,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/06/学习SpringCloud03-hystrix/" itemprop="url">学习SpringCloud03-hystrix</a></h1>
+                <a class="post-title-link" href="/2018/08/06/学习SpringCloud06-Eureka-高可用/" itemprop="url">学习SpringCloud06-Eureka-高可用</a></h1>
         
 
         <div class="post-meta">
@@ -701,8 +858,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/08/06/学习SpringCloud03-hystrix/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud03-hystrix/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud03-hystrix/" itemprop="commentsCount" ></span>
+                <a href="/2018/08/06/学习SpringCloud06-Eureka-高可用/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2018/08/06/学习SpringCloud06-Eureka-高可用/" class="cy_cmt_count" data-xid="2018/08/06/学习SpringCloud06-Eureka-高可用/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -731,13 +888,14 @@
 
       
         
-          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://blog.csdn.net/forezp/article/details/70148833/" target="_blank" rel="noopener">https://blog.csdn.net/forezp/article/details/70148833/</a></p>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>尝试使用熔断器。即服务消费者去调用服务提供者的时候，如果由于各种原因提供者不可用了，并且达到一个阀值（Hystric 是5秒20次）断路器将会被打开。当提供者再次可用时，调用会恢复正常。</p>
-<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>这篇文章的实验环境是基于《学习SpringCloud03-Eureka》中的几个项目的，先启动注册中<code>eureka-server</code>, 再启动服务提供者1<code>eureka-provider1</code>，服务提供者2就不用启动了，这篇文章不是为了实验集群和负载均衡。</p>
-<h2 id="改造消费者"><a href="#改造消费者" class="headerlink" title="改造消费者"></a>改造消费者</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p>在<code>eureka-consumer</code>的pom中加入依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+          <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://blog.csdn.net/sosfnima/article/details/53178305" target="_blank" rel="noopener">https://blog.csdn.net/sosfnima/article/details/53178305</a></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>服务注册中心的高可用，其实就是冗余一个注册中心，当其中一个注册中心挂了的时候另外一个还可以继续使用，这就是注册中心的高可用。</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>启动两个服务注册中心，并注册一个服务，此时两个注册中心都有此服务，kill掉其中一个注册中心，另外一个注册中心还能继续使用。</p>
+<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>这篇文章的实验环境是基于《学习SpringCloud03-Eureka》中的几个项目的。</p>
+<h2 id="改造eureka-server"><a href="#改造eureka-server" class="headerlink" title="改造eureka-server"></a>改造eureka-server</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p>添加多环境的配置，当环境是1时，启动注册中心1，当环境是2时启动注册中心2。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习SpringCloud03-hystrix/#more" rel="contents">
+            <a class="btn" href="/2018/08/06/学习SpringCloud06-Eureka-高可用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -909,163 +1067,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/06/学习SpringCloud04-zuul/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （四）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/06/学习Activiti 6.0.0 （四）/" itemprop="url">学习Activiti 6.0.0 （四）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T13:45:08+08:00">
-                2018-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java后台/" itemprop="url" rel="index">
-                    <span itemprop="name">Java后台</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/08/06/学习Activiti 6.0.0 （四）/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2018/08/06/学习Activiti 6.0.0 （四）/" class="cy_cmt_count" data-xid="2018/08/06/学习Activiti 6.0.0 （四）/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="挂起-amp-激活"><a href="#挂起-amp-激活" class="headerlink" title="挂起 &amp; 激活"></a>挂起 &amp; 激活</h2><p>当一个流程定义被挂起后，如果再去尝试启动一个流程，那么就会抛一个异常<code>ActivitiException</code>, 测试代码如下：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/06/学习Activiti 6.0.0 （四）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
