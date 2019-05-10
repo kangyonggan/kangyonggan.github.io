@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/shiro集成redis实现session集群共享/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/使用aop和自定义注解打印出参入参日志和方法执行时间/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -327,7 +327,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/25/shiro集成redis实现session集群共享/" itemprop="url">shiro集成redis实现session集群共享</a></h1>
+                <a class="post-title-link" href="/2017/03/25/使用aop和自定义注解打印出参入参日志和方法执行时间/" itemprop="url">使用aop和自定义注解打印出参入参日志和方法执行时间</a></h1>
         
 
         <div class="post-meta">
@@ -339,7 +339,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:52:51+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:43:00+08:00">
                 2017-03-25
               </time>
             
@@ -381,8 +381,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/03/25/shiro集成redis实现session集群共享/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2017/03/25/shiro集成redis实现session集群共享/" class="cy_cmt_count" data-xid="2017/03/25/shiro集成redis实现session集群共享/" itemprop="commentsCount" ></span>
+                <a href="/2017/03/25/使用aop和自定义注解打印出参入参日志和方法执行时间/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2017/03/25/使用aop和自定义注解打印出参入参日志和方法执行时间/" class="cy_cmt_count" data-xid="2017/03/25/使用aop和自定义注解打印出参入参日志和方法执行时间/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -411,173 +411,11 @@
 
       
         
-          
-            <h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><ol>
-<li>session在tomcat集群中共享（单点登录）</li>
-<li>tomcat重启后会话不丢失</li>
-</ol>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>覆写<code>EnterpriseCacheSessionDAO</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kangyonggan.blog.web.shiro;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.kangyonggan.api.common.service.RedisService;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.session.Session;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> kangyonggan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2016/12/31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEnterpriseCacheSessionDAO</span> <span class="keyword">extends</span> <span class="title">EnterpriseCacheSessionDAO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisService redisService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建session，保存到redis数据库</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Serializable <span class="title">doCreate</span><span class="params">(Session session)</span> </span>&#123;</span><br><span class="line">        Serializable sessionId = <span class="keyword">super</span>.doCreate(session);</span><br><span class="line">        redisService.set(sessionId.toString(), session);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sessionId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取session</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sessionId</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Session <span class="title">doReadSession</span><span class="params">(Serializable sessionId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 先从缓存中获取session，如果没有再去数据库中获取</span></span><br><span class="line">        Session session = <span class="keyword">super</span>.doReadSession(sessionId);</span><br><span class="line">        <span class="keyword">if</span> (session == <span class="keyword">null</span>) &#123;</span><br><span class="line">            session = (Session) redisService.get(sessionId.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> session;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新session的最后一次访问时间</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> session</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doUpdate</span><span class="params">(Session session)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doUpdate(session);</span><br><span class="line">        redisService.set(session.getId().toString(), session);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除session</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> session</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doDelete</span><span class="params">(Session session)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doDelete(session);</span><br><span class="line">        redisService.delete(session.getId().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>但是一般还是别在集群中使用session。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/jdk1-8发送http请求报SSLv3的解决方案/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/25/jdk1-8发送http请求报SSLv3的解决方案/" itemprop="url">jdk1.8发送http请求报SSLv3的解决方案</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:51:02+08:00">
-                2017-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/综合/" itemprop="url" rel="index">
-                    <span itemprop="name">综合</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/03/25/jdk1-8发送http请求报SSLv3的解决方案/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2017/03/25/jdk1-8发送http请求报SSLv3的解决方案/" class="cy_cmt_count" data-xid="2017/03/25/jdk1-8发送http请求报SSLv3的解决方案/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>从 JDK 8u31 发行版开始，已停用 SSLv3 协议（安全套接字层），该协议在正常情况下不可用。如果确实需要 SSLv3，可以重新激活该协议…</p>
-<h3 id="SSLv3激活步骤"><a href="#SSLv3激活步骤" class="headerlink" title="SSLv3激活步骤"></a>SSLv3激活步骤</h3><p>切到${java_home}/jre/lib/security目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/security</span><br></pre></td></tr></table></figure>
+          <h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h3><p><code>LogTime.java</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.api.common.annotation;</span><br><span class="line"></span><br><span class="line">import java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 在方法上加此注解会打印入参和出参，会计算方法消耗的时间</span><br><span class="line"> *</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @since 2016/12/8</span><br><span class="line"> */</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">public @interface LogTime &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/jdk1-8发送http请求报SSLv3的解决方案/#more" rel="contents">
+            <a class="btn" href="/2017/03/25/使用aop和自定义注解打印出参入参日志和方法执行时间/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -628,7 +466,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/实现全文检索-基于MySQL/">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/MybatisGenerator集成MapperPlugin、LombokPlugin和SerializablePlugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="康永敢">
@@ -647,7 +485,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/25/实现全文检索-基于MySQL/" itemprop="url">实现全文检索-基于MySQL</a></h1>
+                <a class="post-title-link" href="/2017/03/25/MybatisGenerator集成MapperPlugin、LombokPlugin和SerializablePlugin/" itemprop="url">Mybatis Generator集成MapperPlugin、LombokPlugin和SerializablePlugin</a></h1>
         
 
         <div class="post-meta">
@@ -659,7 +497,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:49:18+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:38:59+08:00">
                 2017-03-25
               </time>
             
@@ -701,8 +539,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/03/25/实现全文检索-基于MySQL/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2017/03/25/实现全文检索-基于MySQL/" class="cy_cmt_count" data-xid="2017/03/25/实现全文检索-基于MySQL/" itemprop="commentsCount" ></span>
+                <a href="/2017/03/25/MybatisGenerator集成MapperPlugin、LombokPlugin和SerializablePlugin/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2017/03/25/MybatisGenerator集成MapperPlugin、LombokPlugin和SerializablePlugin/" class="cy_cmt_count" data-xid="2017/03/25/MybatisGenerator集成MapperPlugin、LombokPlugin和SerializablePlugin/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -731,340 +569,507 @@
 
       
         
-          <p>我们经常在网站上能看到搜索框， 可以用空格分割关键词、可以用拼音搜索等…</p>
-<h3 id="把关键字拆分为一组词"><a href="#把关键字拆分为一组词" class="headerlink" title="把关键字拆分为一组词"></a>把<code>关键字</code>拆分为一组<code>词</code></h3><p>例子：搜索<code>懒人快乐</code>， 后台程序就会把<code>懒人快乐</code>拆分成两个词<code>懒人,快乐</code>。</p>
-<p>说明：可以使用<code>jieba-analysis</code>结巴分词， 用法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.huaban&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jieba-analysis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/实现全文检索-基于MySQL/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/实现前端markdown编辑器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/25/实现前端markdown编辑器/" itemprop="url">实现前端markdown编辑器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:46:19+08:00">
-                2017-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web前端/" itemprop="url" rel="index">
-                    <span itemprop="name">Web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/03/25/实现前端markdown编辑器/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2017/03/25/实现前端markdown编辑器/" class="cy_cmt_count" data-xid="2017/03/25/实现前端markdown编辑器/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在做网站的时候， 一帮都有后台管理可以发布一些文章或者公告之类的，一般情况下我们使用的是富文本编辑器（类似word），但我并不喜欢它， 我更喜欢markdown编辑器…</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
-<li>下载bootstrap <a href="http://v3.bootcss.com" target="_blank" rel="noopener">http://v3.bootcss.com</a></li>
-<li>下载jquery <a href="http://jquery.com/download" target="_blank" rel="noopener">http://jquery.com/download</a></li>
-<li>下载marked <a href="https://github.com/chjj/marked" target="_blank" rel="noopener">https://github.com/chjj/marked</a></li>
-<li>下载bootstrap-markdown <a href="http://www.codingdrama.com/bootstrap-markdown/" target="_blank" rel="noopener">http://www.codingdrama.com/bootstrap-markdown</a></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/实现前端markdown编辑器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/ubuntu下mysql数据库恢复/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="康永敢">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东方骄子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/25/ubuntu下mysql数据库恢复/" itemprop="url">ubuntu下mysql数据库恢复</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:45:07+08:00">
-                2017-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/综合/" itemprop="url" rel="index">
-                    <span itemprop="name">综合</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/03/25/ubuntu下mysql数据库恢复/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://kangyonggan.com/2017/03/25/ubuntu下mysql数据库恢复/" class="cy_cmt_count" data-xid="2017/03/25/ubuntu下mysql数据库恢复/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前端时间我在玩主从库的时候， 一不小心把mysql数据库玩坏了， 连服务都启动不了了， 经过一番修复后还是不行， 可怜我的博客都在库里, 不过我却在庆幸， 因为这叫置之死地而后生，我又能学到牛逼技术了…</p>
-<h3 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h3><p>mysql数据是放在/var/lib/mysql下面的，需要备份的内容有：</p>
+          <h3 id="MBG集成MapperPlugin、LombokPlugin和SerializablePlugin"><a href="#MBG集成MapperPlugin、LombokPlugin和SerializablePlugin" class="headerlink" title="MBG集成MapperPlugin、LombokPlugin和SerializablePlugin"></a><code>MBG</code>集成<code>MapperPlugin</code>、<code>LombokPlugin</code>和<code>SerializablePlugin</code></h3><p>可以生成的持久层代码:  </p>
 <ul>
-<li>ibdata1</li>
-<li>performance_schema</li>
-<li>blog文件夹 （对应数据库blog）</li>
-<li>其他你需要恢复的数据库</li>
+<li>生成BeanMapper.java</li>
+<li>生成BeanMapper.xml</li>
+<li>生成Bean.java</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>生成的Mapper.java继承了MyMapper.java(所有单表的crud全部不用写SQL)</li>
+<li>实体bean拥有@Data注解（免去写getter、setter和toString的烦恼）</li>
+<li>实体bean实现Serializable接口，可以放心的放入Redis缓存或传输如分布式系统间（如:dubbo）</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/ubuntu下mysql数据库恢复/#more" rel="contents">
+            <a class="btn" href="/2017/03/25/MybatisGenerator集成MapperPlugin、LombokPlugin和SerializablePlugin/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/多环境下autoconfig使用的小例子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/25/多环境下autoconfig使用的小例子/" itemprop="url">多环境下autoconfig使用的小例子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:37:30+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/03/25/多环境下autoconfig使用的小例子/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2017/03/25/多环境下autoconfig使用的小例子/" class="cy_cmt_count" data-xid="2017/03/25/多环境下autoconfig使用的小例子/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="为什么使用Autoconfig"><a href="#为什么使用Autoconfig" class="headerlink" title="为什么使用Autoconfig"></a>为什么使用Autoconfig</h3><p>在一个应用中，我们总是会遇到一些参数，例如：</p>
+<ul>
+<li>数据库服务器IP地址、端口、用户名；</li>
+<li>用来保存上传资料的目录。</li>
+<li>一些参数，诸如是否打开cache、加密所用的密钥名称等等。</li>
+</ul>
+<p>这些参数有一个共性，那就是：它们和应用的逻辑无关，只和当前环境、当前系统用户相关。以下场景很常见：</p>
+<ul>
+<li>在开发、测试、发布阶段，使用不同的数据库服务器；</li>
+<li>在开发阶段，使用Windows的A开发者将用户上传的文件存放在d:\my_upload目录中，而使用Linux的B开发者将同样的文件存放在/home/myname/my_upload目录中。</li>
+<li>在开发阶段设置cache=off，在生产环境中设置cache=on。</li>
+<li>很明显，这些参数不适合被“硬编码”在配置文件或代码中。因为每一个从源码库中取得它们的人，都有可能需要修改它们，使之与自己的环境相匹配, autoconfig就是很好的选择。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/25/多环境下autoconfig使用的小例子/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/刚刚安装的ubuntu16-04-1没ssh服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/25/刚刚安装的ubuntu16-04-1没ssh服务/" itemprop="url">刚刚安装的ubuntu16.04.1没ssh服务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:36:44+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/综合/" itemprop="url" rel="index">
+                    <span itemprop="name">综合</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/03/25/刚刚安装的ubuntu16-04-1没ssh服务/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2017/03/25/刚刚安装的ubuntu16-04-1没ssh服务/" class="cy_cmt_count" data-xid="2017/03/25/刚刚安装的ubuntu16-04-1没ssh服务/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在ubuntu16.04.1安装ssh服务，让远程可以用ssh登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kangyonggan.com/2017/03/25/如何把内网机器变成外网可以访问的服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="康永敢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东方骄子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/25/如何把内网机器变成外网可以访问的服务器/" itemprop="url">如何把内网机器变成外网可以访问的服务器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T17:35:22+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/综合/" itemprop="url" rel="index">
+                    <span itemprop="name">综合</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/03/25/如何把内网机器变成外网可以访问的服务器/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://kangyonggan.com/2017/03/25/如何把内网机器变成外网可以访问的服务器/" class="cy_cmt_count" data-xid="2017/03/25/如何把内网机器变成外网可以访问的服务器/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>需要一台内网机器（性能越强越好）【192.168.1.100】</li>
+<li>一个有公网IP的路由器，或者移动内网或者电信内网IP都可以【101.245.198.155】</li>
+<li>一个公网服务器（不需要内存太大，1G足够）【121.40.66.176】</li>
+</ol>
+<blockquote>
+<p>路由器和公网服务器要能互通，如果不通，可以尝试重启路由器，重启的作用是换一个新的ip，也许就通了</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/25/如何把内网机器变成外网可以访问的服务器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1106,7 +1111,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1156,7 +1161,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1167,7 +1172,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

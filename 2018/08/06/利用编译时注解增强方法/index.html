@@ -89,12 +89,12 @@
 <meta property="og:site_name" content="东方骄子">
 <meta property="og:description" content="想法 在任何一个方法上加上注解，都要能打印出参、入参信息，而不局限于spring管理的类方法。 不要每次调用方法都要经过各种反射，而是编译时就把增强代码注入到方法第一行。这样性能更好。 可以自定义使用什么日志框架输出日志。  实验环境 开发工具：idea或eclipse 项目管理工具：maven3.3.9 jdk版本：1.8.0_144">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://kangyonggan.com/uploads/method-logger.png">
-<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2wcj8olgrj31hj0u0n0b.jpg">
+<meta property="og:updated_time" content="2019-05-10T09:26:06.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用编译时注解增强方法">
 <meta name="twitter:description" content="想法 在任何一个方法上加上注解，都要能打印出参、入参信息，而不局限于spring管理的类方法。 不要每次调用方法都要经过各种反射，而是编译时就把增强代码注入到方法第一行。这样性能更好。 可以自定义使用什么日志框架输出日志。  实验环境 开发工具：idea或eclipse 项目管理工具：maven3.3.9 jdk版本：1.8.0_144">
-<meta name="twitter:image" content="http://kangyonggan.com/uploads/method-logger.png">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2wcj8olgrj31hj0u0n0b.jpg">
 
 
 
@@ -423,7 +423,7 @@
 </ul>
 <a id="more"></a>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="创建maven项目"><a href="#创建maven项目" class="headerlink" title="创建maven项目"></a>创建maven项目</h4><p>使用idea创建一个普通的maven项目hello。并创建两个子模块hello-core和hello-test。整体项目结构如下图：</p>
-<p><img src="/uploads/method-logger.png" alt="method-logger"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2wcj8olgrj31hj0u0n0b.jpg" alt=""></p>
 <h4 id="父模块pom-xml"><a href="#父模块pom-xml" class="headerlink" title="父模块pom.xml"></a>父模块pom.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;groupId&gt;com.kangyonggan.demo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;hello&lt;/artifactId&gt;</span><br><span class="line">    &lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;modules&gt;</span><br><span class="line">        &lt;module&gt;hello-core&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;hello-test&lt;/module&gt;</span><br><span class="line">    &lt;/modules&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;!--Project--&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;project.build.version&gt;1.0-SNAPSHOT&lt;/project.build.version&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--Plugins--&gt;</span><br><span class="line">        &lt;plugin.compiler.version&gt;3.5.1&lt;/plugin.compiler.version&gt;</span><br><span class="line">        &lt;plugin.compiler.level&gt;1.8&lt;/plugin.compiler.level&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;pluginManagement&gt;</span><br><span class="line">            &lt;plugins&gt;</span><br><span class="line">                &lt;!--compiler plugin --&gt;</span><br><span class="line">                &lt;plugin&gt;</span><br><span class="line">                    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                    &lt;version&gt;$&#123;plugin.compiler.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;/plugin&gt;</span><br><span class="line">            &lt;/plugins&gt;</span><br><span class="line">        &lt;/pluginManagement&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="hello-core模块pom-xml"><a href="#hello-core模块pom-xml" class="headerlink" title="hello-core模块pom.xml"></a>hello-core模块pom.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;artifactId&gt;hello&lt;/artifactId&gt;</span><br><span class="line">        &lt;groupId&gt;com.kangyonggan.demo&lt;/groupId&gt;</span><br><span class="line">        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;artifactId&gt;hello-core&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;!--compiler plugin --&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;source&gt;$&#123;plugin.compiler.level&#125;&lt;/source&gt;</span><br><span class="line">                    &lt;target&gt;$&#123;plugin.compiler.level&#125;&lt;/target&gt;</span><br><span class="line">                    &lt;encoding&gt;$&#123;project.build.sourceEncoding&#125;&lt;/encoding&gt;</span><br><span class="line">                    &lt;compilerArgument&gt;-proc:none&lt;/compilerArgument&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;sun.jdk&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;tools&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.5.0&lt;/version&gt;</span><br><span class="line">            &lt;scope&gt;system&lt;/scope&gt;</span><br><span class="line">            &lt;systemPath&gt;$&#123;java.home&#125;/../lib/tools.jar&lt;/systemPath&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -503,8 +503,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/06/学习Activiti 6.0.0 （二）/" rel="next" title="学习Activiti 6.0.0 （二）">
-                <i class="fa fa-chevron-left"></i> 学习Activiti 6.0.0 （二）
+              <a href="/2018/08/06/配置dubbo多注册中心/" rel="next" title="配置dubbo多注册中心">
+                <i class="fa fa-chevron-left"></i> 配置dubbo多注册中心
               </a>
             
           </div>
@@ -513,8 +513,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/06/学习SpringCloud02-Eureka/" rel="prev" title="学习SpringCloud02-Eureka">
-                学习SpringCloud02-Eureka <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/06/学习Activiti 6.0.0 （二）/" rel="prev" title="学习Activiti 6.0.0 （二）">
+                学习Activiti 6.0.0 （二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -601,7 +601,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -612,7 +612,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

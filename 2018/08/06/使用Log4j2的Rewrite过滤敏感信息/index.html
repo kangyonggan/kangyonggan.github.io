@@ -89,12 +89,12 @@
 <meta property="og:site_name" content="东方骄子">
 <meta property="og:description" content="摸索过程查看官方文档https://logging.apache.org/log4j/2.0/manual/appenders.html#RewriteAppender，官方文档中虽然有所介绍，但是没给demo，百度谷歌都很难查到此类文章，所有配置起来有一定难度。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://kangyonggan.com/uploads/log4j2-rewrite-01.png">
-<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2wbjoq4pvj30xl0l60tc.jpg">
+<meta property="og:updated_time" content="2019-05-10T08:51:51.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Log4j2的Rewrite过滤敏感信息">
 <meta name="twitter:description" content="摸索过程查看官方文档https://logging.apache.org/log4j/2.0/manual/appenders.html#RewriteAppender，官方文档中虽然有所介绍，但是没给demo，百度谷歌都很难查到此类文章，所有配置起来有一定难度。">
-<meta name="twitter:image" content="http://kangyonggan.com/uploads/log4j2-rewrite-01.png">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2wbjoq4pvj30xl0l60tc.jpg">
 
 
 
@@ -421,7 +421,7 @@
 <p>运行后报错：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">2017-04-24 23:35:04,827 main ERROR Unable to invoke factory method in class class com.kangyonggan.demo.MyRewritePolicy for element MyRewritePolicy. java.lang.IllegalStateException: No factory method found for class com.kangyonggan.demo.MyRewritePolicy</span><br><span class="line">	at org.apache.logging.log4j.core.config.plugins.util.PluginBuilder.findFactoryMethod(PluginBuilder.java:224)</span><br><span class="line">	at org.apache.logging.log4j.core.config.plugins.util.PluginBuilder.build(PluginBuilder.java:130)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.createPluginObject(AbstractConfiguration.java:952)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:892)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:884)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:884)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.doConfigure(AbstractConfiguration.java:508)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.initialize(AbstractConfiguration.java:232)</span><br><span class="line">	at org.apache.logging.log4j.core.config.AbstractConfiguration.start(AbstractConfiguration.java:244)</span><br><span class="line">	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:545)</span><br><span class="line">	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:617)</span><br><span class="line">	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:634)</span><br><span class="line">	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:229)</span><br><span class="line">	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:152)</span><br><span class="line">	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:45)</span><br><span class="line">	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:194)</span><br><span class="line">	at org.apache.logging.log4j.LogManager.getLogger(LogManager.java:551)</span><br><span class="line">	at com.kangyonggan.demo.Test.&lt;clinit&gt;(Test.java:12)</span><br><span class="line"></span><br><span class="line">[INFO ] 2017-04-24 23:35:04.884 [com.kangyonggan.demo.Test.main:15] - 手机号:15121149571</span><br></pre></td></tr></table></figure>
 <p>从报错信息中可以看出：没有工厂方法（No factory method found）。<br>还提到了org.apache.logging.log4j.core.config.plugins这个包下面的插件。<br>所以去这个包下面看一下相关的插件：</p>
-<p><img src="/uploads/log4j2-rewrite-01.png" alt="plugin"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2wbjoq4pvj30xl0l60tc.jpg" alt=""></p>
 <p>果然看到了factory相关的plugin，并且PluginFactory是作用在method上的。</p>
 <h3 id="使用-PluginFactory注解"><a href="#使用-PluginFactory注解" class="headerlink" title="使用@PluginFactory注解"></a>使用@PluginFactory注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.demo;</span><br><span class="line"></span><br><span class="line">import org.apache.logging.log4j.core.LogEvent;</span><br><span class="line">import org.apache.logging.log4j.core.appender.rewrite.RewritePolicy;</span><br><span class="line">import org.apache.logging.log4j.core.config.plugins.PluginFactory;</span><br><span class="line">import org.apache.logging.log4j.core.impl.Log4jLogEvent;</span><br><span class="line">import org.apache.logging.log4j.message.SimpleMessage;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @since 2017/4/24 0024</span><br><span class="line"> */</span><br><span class="line">public final class MyRewritePolicy implements RewritePolicy &#123;</span><br><span class="line"></span><br><span class="line">    public LogEvent rewrite(final LogEvent event) &#123;</span><br><span class="line">        String message = event.getMessage().getFormattedMessage();</span><br><span class="line">        // 处理日志的逻辑</span><br><span class="line">        message = &quot;处理后的日志: &quot; + message;</span><br><span class="line"></span><br><span class="line">        SimpleMessage simpleMessage = new SimpleMessage(message);</span><br><span class="line">        LogEvent result = new Log4jLogEvent(event.getLoggerName(), event.getMarker(),</span><br><span class="line">                event.getLoggerFqcn(), event.getLevel(), simpleMessage,</span><br><span class="line">                event.getThrown(), event.getContextMap(), event.getContextStack(),</span><br><span class="line">                event.getThreadName(), event.getSource(), event.getTimeMillis());</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @PluginFactory</span><br><span class="line">    public static void factory() &#123;</span><br><span class="line">        System.out.println(&quot;factory&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这次运行后没有报错了，也打印了“factory”，但是rewrite方法没被执行。</p>
@@ -488,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/06/学习Activiti 6.0.0 （三）/" rel="next" title="学习Activiti 6.0.0 （三）">
-                <i class="fa fa-chevron-left"></i> 学习Activiti 6.0.0 （三）
+              <a href="/2018/08/06/SpringMVC结合拦截器、注解实现简单的防重复提交/" rel="next" title="SpringMVC结合拦截器、注解实现简单的防重复提交">
+                <i class="fa fa-chevron-left"></i> SpringMVC结合拦截器、注解实现简单的防重复提交
               </a>
             
           </div>
@@ -498,8 +498,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/06/使用Spring配置多数据源/" rel="prev" title="使用Spring配置多数据源">
-                使用Spring配置多数据源 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/06/让百度分享支持https的网站/" rel="prev" title="让百度分享支持https的网站">
+                让百度分享支持https的网站 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -586,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -597,7 +597,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

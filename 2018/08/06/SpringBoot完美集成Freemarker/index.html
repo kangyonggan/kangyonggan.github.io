@@ -88,14 +88,14 @@
 <meta property="og:site_name" content="东方骄子">
 <meta property="og:description" content="依赖12345678910&amp;lt;!--freemarker--&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://kangyonggan.com/uploads/freemarker-01.png">
-<meta property="og:image" content="http://kangyonggan.com/uploads/freemarker-02.png">
-<meta property="og:image" content="http://kangyonggan.com/uploads/freemarker-03.png">
-<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2w8vl12c3j319d0u0gny.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2w8vs1wwrj31c50u04ad.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2w8vzgfh0j313r0u0gnd.jpg">
+<meta property="og:updated_time" content="2019-05-10T07:19:11.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot完美集成Freemarker">
 <meta name="twitter:description" content="依赖12345678910&amp;lt;!--freemarker--&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;">
-<meta name="twitter:image" content="http://kangyonggan.com/uploads/freemarker-01.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2w8vl12c3j319d0u0gny.jpg">
 
 
 
@@ -398,9 +398,9 @@
 <h2 id="集成、覆写等"><a href="#集成、覆写等" class="headerlink" title="集成、覆写等"></a>集成、覆写等</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package com.kangyonggan.ck.config;</span><br><span class="line"></span><br><span class="line">import com.kangyonggan.freemarker.BlockDirective;</span><br><span class="line">import com.kangyonggan.freemarker.ExtendsDirective;</span><br><span class="line">import com.kangyonggan.freemarker.OverrideDirective;</span><br><span class="line">import com.kangyonggan.freemarker.SuperDirective;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">import javax.annotation.PostConstruct;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author kangyonggan</span><br><span class="line"> * @since 8/6/18</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">public class FreemarkerConfiguration &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    freemarker.template.Configuration configuration;</span><br><span class="line"></span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void setSharedVariable() &#123;</span><br><span class="line">        configuration.setSharedVariable(&quot;block&quot;, new BlockDirective());</span><br><span class="line">        configuration.setSharedVariable(&quot;override&quot;, new OverrideDirective());</span><br><span class="line">        configuration.setSharedVariable(&quot;extends&quot;, new ExtendsDirective());</span><br><span class="line">        configuration.setSharedVariable(&quot;super&quot;, new SuperDirective());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这时候就可以在模板中使用<code>&lt;#include &quot;footer.ftl&quot;/&gt;</code>、<code>&lt;@block name=&quot;main&quot;/&gt;</code>、<code>&lt;@extends name=&quot;layout.ftl&quot;/&gt;</code>指令了。</p>
 <h2 id="热加载"><a href="#热加载" class="headerlink" title="热加载"></a>热加载</h2><p>当我们修改了ftl界面内容后，springboot默认是不会进行热加载的，我们需要对idea动手脚。  </p>
-<p><img src="/uploads/freemarker-01.png" alt=""></p>
-<p><img src="/uploads/freemarker-02.png" alt=""></p>
-<p><img src="/uploads/freemarker-03.png" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2w8vl12c3j319d0u0gny.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2w8vs1wwrj31c50u04ad.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2w8vzgfh0j313r0u0gnd.jpg" alt=""></p>
 <p>当配置好这两个之后，修改ftl保存之后，刷新界面就会加载了。</p>
 
       
@@ -450,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/06/如何把N个苹果按重量相对公平的分配给M个人/" rel="next" title="如何把N个苹果按重量相对公平的分配给M个人">
-                <i class="fa fa-chevron-left"></i> 如何把N个苹果按重量相对公平的分配给M个人
+              <a href="/2018/08/06/让百度分享支持https的网站/" rel="next" title="让百度分享支持https的网站">
+                <i class="fa fa-chevron-left"></i> 让百度分享支持https的网站
               </a>
             
           </div>
@@ -548,7 +548,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -559,7 +559,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

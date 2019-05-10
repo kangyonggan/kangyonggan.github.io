@@ -89,13 +89,13 @@
 <meta property="og:site_name" content="东方骄子">
 <meta property="og:description" content="官方文档:https://docs.docker.com/engine/getstarted/step_six/  推送本地镜像到Docker Hub上你的镜像库中，然后再镜像从镜像库中拉取到本地，并运行它。 推送镜像到镜像库查看本地所有镜像12345root@iZ23ldh8kudZ:~/code/mydockerbuild# docker images REPOSITORY">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://kangyonggan.com/uploads/20170223153853566.png">
-<meta property="og:image" content="http://kangyonggan.com/uploads/20170223154255805.png">
-<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2w3umdtwtj30ic05njrj.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2w3v53kkjj31hs0u0aau.jpg">
+<meta property="og:updated_time" content="2019-05-10T04:25:25.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker-06推送push和拉取pull镜像">
 <meta name="twitter:description" content="官方文档:https://docs.docker.com/engine/getstarted/step_six/  推送本地镜像到Docker Hub上你的镜像库中，然后再镜像从镜像库中拉取到本地，并运行它。 推送镜像到镜像库查看本地所有镜像12345root@iZ23ldh8kudZ:~/code/mydockerbuild# docker images REPOSITORY">
-<meta name="twitter:image" content="http://kangyonggan.com/uploads/20170223153853566.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2w3umdtwtj30ic05njrj.jpg">
 
 
 
@@ -422,7 +422,7 @@
 <blockquote>
 <p>现在, docker-whale镜像还没有命名空间， 你需要关联一个命名空间， 命名空间就是你的Docker Hub账户名（我的是kangyonggan, 然后给镜像名添加命名空间，比如: kangyonggan/docker-whale</p>
 </blockquote>
-<h3 id="用docker-tag命令给镜像添加标签（命名空间）"><a href="#用docker-tag命令给镜像添加标签（命名空间）" class="headerlink" title="用docker tag命令给镜像添加标签（命名空间）"></a>用<code>docker tag</code>命令给镜像添加标签（命名空间）</h3><p><img src="/uploads/20170223153853566.png" alt="tagger"></p>
+<h3 id="用docker-tag命令给镜像添加标签（命名空间）"><a href="#用docker-tag命令给镜像添加标签（命名空间）" class="headerlink" title="用docker tag命令给镜像添加标签（命名空间）"></a>用<code>docker tag</code>命令给镜像添加标签（命名空间）</h3><p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2w3umdtwtj30ic05njrj.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@iZ23ldh8kudZ:~/code/mydockerbuild# docker tag efb18db73358 kangyonggan/docker-whale:latest</span><br></pre></td></tr></table></figure>
 <h4 id="4-再次运行docker-images会发现镜像已经有了标签"><a href="#4-再次运行docker-images会发现镜像已经有了标签" class="headerlink" title="4. 再次运行docker images会发现镜像已经有了标签"></a>4. 再次运行<code>docker images</code>会发现镜像已经有了标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@iZ23ldh8kudZ:~/code/mydockerbuild# docker images </span><br><span class="line">REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">docker-whale               latest              efb18db73358        About an hour ago   275 MB</span><br><span class="line">kangyonggan/docker-whale   latest              efb18db73358        About an hour ago   275 MB</span><br><span class="line">hello-world                latest              48b5124b2768        5 weeks ago         1.84 kB</span><br><span class="line">docker/whalesay            latest              6b362a9f73eb        21 months ago       247 MB</span><br></pre></td></tr></table></figure>
 <p>还会发现，相同的镜像ID存在于两个不同的镜像库。</p>
@@ -430,7 +430,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@iZ23ldh8kudZ:~/code/mydockerbuild# docker login </span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: kangyonggan</span><br><span class="line">Password: </span><br><span class="line">Login Succeeded</span><br></pre></td></tr></table></figure>
 <h3 id="把镜像推送到自己的Docker-Hub上"><a href="#把镜像推送到自己的Docker-Hub上" class="headerlink" title="把镜像推送到自己的Docker Hub上"></a>把镜像推送到自己的Docker Hub上</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@iZ23ldh8kudZ:~/code/mydockerbuild# docker push kangyonggan/docker-whale</span><br><span class="line">The push refers to a repository [docker.io/kangyonggan/docker-whale]</span><br><span class="line">4d8b662d1a5a: Pushing [========&gt;                                          ] 5.001 MB/28.13 MB</span><br><span class="line">5f70bf18a086: Mounted from docker/whalesay </span><br><span class="line">d061ee1340ec: Mounted from docker/whalesay </span><br><span class="line">d511ed9e12e1: Mounted from docker/whalesay </span><br><span class="line">091abc5148e4: Mounted from docker/whalesay </span><br><span class="line">b26122d57afa: Mounted from docker/whalesay </span><br><span class="line">37ee47034d9b: Mounted from docker/whalesay </span><br><span class="line">528c8710fd95: Mounted from docker/whalesay </span><br><span class="line">1154ba695078: Mounted from docker/whalesay</span><br></pre></td></tr></table></figure>
 <p>网速有点慢(目测要翻墙才能快)，才推送了5/28M。</p>
-<h3 id="登录Docker-Hub查看新推送的镜像"><a href="#登录Docker-Hub查看新推送的镜像" class="headerlink" title="登录Docker Hub查看新推送的镜像"></a>登录Docker Hub查看新推送的镜像</h3><p><img src="/uploads/20170223154255805.png" alt="resp_list.png"></p>
+<h3 id="登录Docker-Hub查看新推送的镜像"><a href="#登录Docker-Hub查看新推送的镜像" class="headerlink" title="登录Docker Hub查看新推送的镜像"></a>登录Docker Hub查看新推送的镜像</h3><p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2w3v53kkjj31hs0u0aau.jpg" alt=""></p>
 <p>由于网速太慢（怀疑是官网太慢），截图的时候还没推送完成。</p>
 <h2 id="从镜像库拉取镜像"><a href="#从镜像库拉取镜像" class="headerlink" title="从镜像库拉取镜像"></a>从镜像库拉取镜像</h2><p><code>docker pull</code>是用来拉取镜像的，如果本地已经有最新版的镜像，<code>docker pull</code>命令将什么也不做，为了验证是真正的从镜像库中拉取下来的，你可以先删除本地镜像<code>docker image remove</code>。</p>
 <h3 id="用docker-image-remove删除本地镜像"><a href="#用docker-image-remove删除本地镜像" class="headerlink" title="用docker image remove删除本地镜像"></a>用<code>docker image remove</code>删除本地镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@iZ23ldh8kudZ:~/code/mydockerbuild# docker images </span><br><span class="line">REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">docker-whale2              latest              efb18db73358        2 hours ago         275 MB</span><br><span class="line">docker-whale               latest              efb18db73358        2 hours ago         275 MB</span><br><span class="line">kangyonggan/docker-whale   latest              efb18db73358        2 hours ago         275 MB</span><br><span class="line">hello-world                latest              48b5124b2768        5 weeks ago         1.84 kB</span><br><span class="line">docker/whalesay            latest              6b362a9f73eb        21 months ago       247 MB</span><br><span class="line"></span><br><span class="line">root@iZ23ldh8kudZ:~/code/mydockerbuild# docker image remove efb18db73358</span><br><span class="line">Error response from daemon: conflict: unable to delete efb18db73358 (must be forced) - image is referenced in multiple repositories</span><br></pre></td></tr></table></figure>
@@ -591,7 +591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -602,7 +602,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

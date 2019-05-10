@@ -89,13 +89,13 @@
 <meta property="og:site_name" content="东方骄子">
 <meta property="og:description" content="HashMap实现原理分析 参考：http://blog.csdn.net/vking_wang/article/details/14166593  HashMap的数据结构在数据结构中，有数组和链表来实现对数据的存储，但这两者是两个极端。 数组数组的存储区间是连续的，空间复杂度大，时间复杂度小。特点是：查找容易，插入和删除困难。 链表链表的存储区间是离散的，空间复杂度小，时间复杂度大。特点是：查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://kangyonggan.com/uploads/20170309210540154.jpeg">
-<meta property="og:image" content="http://kangyonggan.com/uploads/20170309210548825.png">
-<meta property="og:updated_time" content="2018-08-28T03:11:04.000Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2w401vobxj30e80bbglr.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2w40f1250j30f10co75l.jpg">
+<meta property="og:updated_time" content="2019-05-10T04:30:31.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap实现原理分析">
 <meta name="twitter:description" content="HashMap实现原理分析 参考：http://blog.csdn.net/vking_wang/article/details/14166593  HashMap的数据结构在数据结构中，有数组和链表来实现对数据的存储，但这两者是两个极端。 数组数组的存储区间是连续的，空间复杂度大，时间复杂度小。特点是：查找容易，插入和删除困难。 链表链表的存储区间是离散的，空间复杂度小，时间复杂度大。特点是：查">
-<meta name="twitter:image" content="http://kangyonggan.com/uploads/20170309210540154.jpeg">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2w401vobxj30e80bbglr.jpg">
 
 
 
@@ -421,9 +421,9 @@
 <h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>哈希表是综合了数组和链表的优点，既满足了查找方便，同时也不占用太多空间，使用也很方便。</p>
 <a id="more"></a>
 <p>哈希表有很多实现方式，下面讲解最常用的拉链发，可以理解为链表的数组：</p>
-<p><img src="/uploads/20170309210540154.jpeg" alt="la"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2w401vobxj30e80bbglr.jpg" alt=""></p>
 <p>从上图中总可以看出，哈希表是由<code>数组+链表</code>组成的，HashMap里面实现了一个静态内部类<code>Entity</code>,其重要属性有<code>key</code>、<code>value</code>和<code>next</code>，从属性可以看出Entity是HashMap键值对实现的一个基础Bean，上面我们说到HashMap的基础就是一个线性数组，即Entity[],Map里面的内容都保存在数组Entity[]中, 下面是个demo：</p>
-<p><img src="/uploads/20170309210548825.png" alt="lan"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2w40f1250j30f10co75l.jpg" alt=""></p>
 <p>这个链表是一个长度为16的数组，左边数字是数组的下标，右边的数字是key的hash值，数组中的每一个元素都是一个链表的头节点，那么这些元素是按照什么规则存储的呢？又是按照什么规则查找的呢？</p>
 <h4 id="存取规则hash-key-len"><a href="#存取规则hash-key-len" class="headerlink" title="存取规则hash(key)%len"></a>存取规则<code>hash(key)%len</code></h4><p>比如上图中，key的hash值为31的元素，模上数组长度16，结果是15，那么它就存储在arr[15]所在的链表中。查找时就是先计算hash(key)%len，找出元素所在的链表位于数组的位置，然后遍历链表即可。</p>
 <h4 id="几个注意点"><a href="#几个注意点" class="headerlink" title="几个注意点"></a>几个注意点</h4><ol>
@@ -486,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/25/JVM结构和GC的工作机制/" rel="next" title="JVM结构和GC的工作机制">
-                <i class="fa fa-chevron-left"></i> JVM结构和GC的工作机制
+              <a href="/2017/03/25/SSH登录时指定密码/" rel="next" title="SSH登录时指定密码">
+                <i class="fa fa-chevron-left"></i> SSH登录时指定密码
               </a>
             
           </div>
@@ -584,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +595,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
